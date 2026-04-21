@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>還願 · Ranh Giới Mỏng Manh</title>
+  <meta name="description"
+    content="Câu chuyện kinh dị tương tác về ranh giới giữa tín ngưỡng truyền thống và mê tín dị đoan – dưới góc nhìn Mác–Lênin." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Be Vietnam Pro"', 'sans-serif'], serif: ['"Noto Serif"', 'serif'], kanji: ['"Noto Serif SC"', 'serif'] } } } }</script>
+</head>
+
+<body>
+
+  <!-- ══ BACKGROUND MUSIC ════════════════════════════ -->
+  <audio id="bgm" loop preload="auto">
+    <source src="The Taste of A Cursed Spirit - Jujutsu Kaisen Season 2 Original Soundtrack.mp4" type="video/mp4">
+  </audio>
+  <audio id="bgm-good" preload="auto">
+    <source src="Ao No Sumika (From _Jujutsu Kaisen_) - Piano Cover Full Song 🎧 [paUpS4rUZT0].mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bgm-neutral" preload="auto">
+    <source src="For River - Piano (Johnny's Version) [9QfPDmzpC2Q].mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bgm-bad" preload="auto">
+    <source src="Prisonic Fairytale [ZKPREjJRkH8].mp3" type="audio/mpeg">
+  </audio>
+  <div id="glitch-vfx" aria-hidden="true"></div>
+
+  <!-- ══ MUSIC TOGGLE BUTTON ══════════════════════════ -->
+  <button id="music-btn" onclick="toggleMusic()" title="Bật/Tắt nhạc nền" aria-label="Toggle background music">
+    <span class="music-icon-on">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2" />
+        <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <span class="music-waves">
+        <span class="wave w1"></span>
+        <span class="wave w2"></span>
+        <span class="wave w3"></span>
+      </span>
+    </span>
+    <span class="music-icon-off" style="display:none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2" />
+        <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="2" />
+        <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </span>
+  </button>
+  <div id="flash"></div>
+  <canvas id="confetti"></canvas>
+
+  <!-- ══ SCENE 1 · INTRO ══════════════════════════════════ -->
+  <section id="s-intro" class="scene active">
+    <div id="rain-box" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+    <div class="scanline"></div>
+    <div class="wm t-seal" style="color:rgba(100,0,0,.05)">還願</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-16">
+      <div class="flex items-end gap-5 mb-7">
+        <div class="red-string" style="width:90px"></div>
+        <div class="flex items-end gap-4">
+          <div class="candle-wrap flicker" style="animation-delay:.2s">
+            <div class="candle-glow"></div>
+            <div class="candle-flame"></div>
+            <div class="candle-body" style="height:35px"></div>
+          </div>
+          <div class="candle-wrap flicker" style="animation-delay:0s;transform:scale(1.25)">
+            <div class="candle-glow"></div>
+            <div class="candle-flame"></div>
+            <div class="candle-body" style="height:48px"></div>
+          </div>
+          <div class="candle-wrap flicker" style="animation-delay:.45s">
+            <div class="candle-glow"></div>
+            <div class="candle-flame"></div>
+            <div class="candle-body" style="height:35px"></div>
+          </div>
+        </div>
+        <div class="red-string" style="width:90px"></div>
+      </div>
+      <p class="t-seal t-amber tracking-[.4em] text-xs mb-3">還願 · GROUP 3 · 2026</p>
+      <h1 class="font-serif text-center text-5xl sm:text-7xl font-black leading-none mb-1"
+        style="color:#cc1010;text-shadow:0 0 40px rgba(180,0,0,.6)">Ranh Giới</h1>
+      <h1 class="font-serif text-center text-4xl sm:text-6xl font-black leading-none mb-6" style="color:#ddd0c0">
+        Mỏng&nbsp;<span style="color:#cc1010">Manh</span></h1>
+      <p class="font-serif italic text-center t-ghost text-sm max-w-md leading-relaxed mb-6">"Khi nỗi sợ hãi đủ lớn, con
+        người sẵn sàng đặt niềm tin vào bất cứ điều gì —<br />kể cả những thứ chỉ tồn tại để rút cạn túi tiền của họ."
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <div class="paper-tag" style="transform:rotate(-2deg)">一&nbsp; Nguồn gốc tâm lý</div>
+        <div class="paper-tag" style="transform:rotate(1deg)">二&nbsp; Nhận thức</div>
+        <div class="paper-tag" style="transform:rotate(-1.5deg)">三&nbsp; Kinh tế–XH</div>
+        <div class="paper-tag" style="transform:rotate(2deg)">四&nbsp; Hậu quả</div>
+      </div>
+      <button onclick="goTo('s-back')" class="btn-dark flex items-center gap-3 text-base px-8 py-4">
+        <i class="fa-solid fa-door-open text-sm"></i> Bước vào trong…
+      </button>
+      <p class="mt-5 t-ghost text-[10px] tracking-widest uppercase">Nội dung giáo dục MLN133 · 16+ · Horror Interactive
+        Story</p>
+    </div>
+  </section>
+
+  <!-- ══ SCENE 2 · BACKSTORY ══════════════════════════════ -->
+  <section id="s-back" class="scene">
+    <div class="wm t-seal" style="color:rgba(60,0,0,.04);font-size:clamp(150px,30vw,350px)">恐</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"></div>
+          <div>
+            <p class="t-blood text-[10px] tracking-[.3em] font-mono uppercase">Cảnh 01 · Backstory</p>
+            <p class="t-ghost text-xs mt-0.5">Bên trong cái đầu của em trai bạn</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Polaroid memories -->
+        <div class="illust-panel" style="border-color:rgba(60,20,0,.5)">
+          <div class="illust-polaroids">
+            <div class="polaroid">
+              <div class="polaroid-img" style="background:linear-gradient(135deg,#1a0a00,#2d1800)">🕯️</div>
+              <div class="polaroid-damage"></div>
+              <span class="polaroid-caption">3 tháng trước</span>
+            </div>
+            <div class="polaroid">
+              <div class="polaroid-img" style="background:linear-gradient(135deg,#000a18,#001428)">📱</div>
+              <div class="polaroid-damage"></div>
+              <span class="polaroid-caption">5 tuần trước</span>
+            </div>
+            <div class="polaroid">
+              <div class="polaroid-img" style="background:linear-gradient(135deg,#0d0008,#180010)">🌙</div>
+              <div class="polaroid-damage"></div>
+              <span class="polaroid-caption">2 tuần trước</span>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-3xl t-pale font-bold mb-5">Áp Lực Như <span class="t-blood">Lời
+            Nguyền</span></h2>
+        <div class="space-y-4 mb-6">
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ký ức I · 3 tháng trước</p>
+            <p class="t-pale text-sm leading-relaxed">Bố ngồi đợi đến 1 giờ sáng để tắt đèn phòng khách sau khi em học
+              xong. Áp lực đó — không lời, không tiếng — nặng hơn bất kỳ lời nhắc nhở nào.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ký ức II · 5 tuần trước</p>
+            <p class="t-pale text-sm leading-relaxed">Em mở TikTok lúc 2 giờ sáng. Một video: <em class="t-amber">"Tôi
+                đỗ thủ khoa nhờ bùa học bá – 2.1 triệu lượt xem."</em> 847 bình luận cảm ơn. Em không biết tất cả đều là
+              tài khoản ảo.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ký ức III · 2 tuần trước</p>
+            <p class="t-pale text-sm leading-relaxed">Lần thứ tư thuật toán đẩy quảng cáo vào mặt em. Lần này em <strong
+                class="t-blood">nhấn vào</strong>. 5 triệu — tiết kiệm 2 năm — chuyển đi trong 3 phút.</p>
+          </div>
+        </div>
+        <div class="lesson-card p-4 mb-6">
+          <p class="text-[10px] text-purple-400 font-mono uppercase tracking-wider mb-2">📚 Mác–Lênin · Nguồn gốc mê tín
+          </p>
+          <p class="t-ghost text-xs italic leading-relaxed">"Mê tín dị đoan phát sinh từ ba nguồn: <strong
+              class="text-purple-300">tâm lý</strong> (nỗi sợ vô định), <strong class="text-purple-300">nhận
+              thức</strong> (thiếu kiến thức khoa học), và <strong class="text-purple-300">kinh tế–xã hội</strong> (kẻ
+            xấu trục lợi). Em trai bạn đang mang đủ cả ba."</p>
+        </div>
+        <button onclick="goTo('s-disc1')" class="btn-dark w-full flex items-center justify-center gap-3 py-4">
+          <i class="fa-solid fa-magnifying-glass"></i> Chiều thứ Sáu. Bạn tìm thấy thứ gì đó…
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SCENE 3 · DISCOVERY 1 ════════════════════════════ -->
+  <section id="s-disc1" class="scene">
+    <div class="wm t-seal" style="color:rgba(60,0,0,.05);font-size:clamp(140px,28vw,320px)">怨</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"></div>
+          <div>
+            <p class="t-blood text-[10px] tracking-[.3em] font-mono uppercase">Cảnh 02 · Phát hiện I</p>
+            <p class="t-ghost text-xs mt-0.5">17:43 · Nhà trống · Điện thoại em sáng lên</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Animated scam phone -->
+        <div class="illust-panel" style="border-color:rgba(120,0,0,.4)">
+          <div class="illust-phone-wrap flex-col sm:flex-row">
+            <div class="phone-device">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner">
+                <div class="phone-header">
+                  <span class="phone-header-icon">🔮</span>
+                  <span class="phone-header-title">靈符寶鑑 · BÙA HỌC ĐÂU ĐẬU ĐÓ</span>
+                  <span class="phone-price">5.000.000 ₫</span>
+                </div>
+                <div class="phone-messages">
+                  <div class="pm pm-in">Bùa đã kích hoạt! 🔮</div>
+                  <div class="pm pm-in">Đỗ đại học 100% ✅</div>
+                  <div class="pm pm-out">Con cảm ơn thầy! 🙏</div>
+                  <div class="pm pm-in" style="animation-delay:2.7s">✅ THANH TOÁN THÀNH CÔNG</div>
+                </div>
+              </div>
+              <div class="phone-device-btn"></div>
+            </div>
+            <div class="scam-info-col hidden sm:flex">
+              <div class="scam-info-item">
+                <span class="scam-badge-anim">⚠ CẢNH BÁO</span>
+                <p class="t-pale text-xs mt-2 leading-relaxed">5.000.000đ đã chuyển đến tài khoản lạ</p>
+              </div>
+              <div class="scam-info-item">
+                <p class="t-amber text-[10px] font-mono uppercase mb-1">Domain age</p>
+                <p class="t-blood text-sm font-bold">19 ngày tuổi</p>
+              </div>
+              <div class="scam-info-item">
+                <p class="t-amber text-[10px] font-mono uppercase mb-1">Fake reviews</p>
+                <p class="t-blood text-sm font-bold">847 tài khoản ảo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-3xl t-pale font-bold mb-5">Màn Hình <span class="t-blood">Đỏ Rực</span>
+          Trong Bóng Tối</h2>
+        <div class="horror-card p-5 mb-5 relative">
+          <div class="co-tl"></div>
+          <div class="co-br"></div>
+          <p class="t-pale text-sm leading-relaxed mb-3">Bạn vô tình nhìn thấy màn hình. Nền đỏ rực. Chữ vàng. Hình "bùa
+            linh" in laser từ máy tính bảng 2 tuần trước. Rồi bạn thấy dòng chữ: <strong class="t-blood">"THANH TOÁN
+              THÀNH CÔNG · 5.000.000đ"</strong></p>
+          <p class="t-ghost text-xs italic">Đó là 5 triệu em nhặt từng đồng suốt 2 năm mỗi chiều cuối tuần.</p>
+        </div>
+        <div class="space-y-2 mb-6">
+          <div class="flex items-center gap-3 horror-card px-4 py-3"><i
+              class="fa-solid fa-circle t-blood text-[8px] flex-shrink-0"></i>
+            <p class="t-pale text-xs">5 triệu đã chuyển đến tài khoản lạ tên "Đại Sư Tâm Linh Số 1"</p>
+          </div>
+          <div class="flex items-center gap-3 horror-card px-4 py-3"><i
+              class="fa-solid fa-circle t-blood text-[8px] flex-shrink-0"></i>
+            <p class="t-pale text-xs">Em không biết bạn đã thấy · Kỳ thi còn 3 tuần</p>
+          </div>
+        </div>
+        <button onclick="goTo('s-disc2')" class="btn-dark w-full flex items-center justify-center gap-3 py-4">
+          <i class="fa-solid fa-spider"></i> Bạn mở máy tính. Bắt đầu điều tra…
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SCENE 4 · DISCOVERY 2 ════════════════════════════ -->
+  <section id="s-disc2" class="scene">
+    <div class="wm t-seal" style="color:rgba(0,0,50,.06);font-size:clamp(140px,28vw,320px)">詐</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(40,60,120,.8),transparent)"></div>
+          <div>
+            <p class="t-blue text-[10px] tracking-[.3em] font-mono uppercase">Cảnh 03 · Phát hiện II</p>
+            <p class="t-ghost text-xs mt-0.5">Bạn tìm kiếm tên "Đại Sư Tâm Linh Số 1"</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: SVG Evidence Network -->
+        <div class="illust-panel" style="border-color:rgba(30,40,100,.4)">
+          <div class="illust-network-wrap">
+            <svg viewBox="0 0 420 200" class="w-full" style="max-height:190px">
+              <!-- Lines -->
+              <line x1="210" y1="100" x2="80" y2="45" stroke="rgba(180,20,20,.4)" stroke-width="1.5" class="net-line" />
+              <line x1="210" y1="100" x2="350" y2="42" stroke="rgba(180,20,20,.4)" stroke-width="1.5" class="net-line"
+                style="animation-delay:.5s" />
+              <line x1="210" y1="100" x2="55" y2="158" stroke="rgba(180,20,20,.4)" stroke-width="1.5" class="net-line"
+                style="animation-delay:1s" />
+              <line x1="210" y1="100" x2="370" y2="162" stroke="rgba(180,20,20,.4)" stroke-width="1.5" class="net-line"
+                style="animation-delay:1.5s" />
+              <line x1="210" y1="100" x2="210" y2="30" stroke="rgba(180,20,20,.4)" stroke-width="1.5" class="net-line"
+                style="animation-delay:.25s" />
+              <!-- Center node -->
+              <circle cx="210" cy="100" r="30" fill="rgba(100,0,0,.6)" stroke="rgba(220,50,50,.7)" stroke-width="1.5"
+                class="net-node" />
+              <circle cx="210" cy="100" r="36" fill="none" stroke="rgba(180,30,30,.2)" stroke-width="1" class="net-node"
+                style="animation-delay:.3s" />
+              <text x="210" y="95" text-anchor="middle" font-size="9" fill="#ffa0a0" font-family="Be Vietnam Pro">Đại
+                Sư</text>
+              <text x="210" y="108" text-anchor="middle" font-size="8" fill="rgba(255,150,150,.7)"
+                font-family="Be Vietnam Pro">Tâm Linh</text>
+              <!-- Satellite nodes -->
+              <circle cx="80" cy="45" r="20" fill="rgba(60,0,0,.5)" stroke="rgba(160,40,40,.5)" stroke-width="1" />
+              <text x="80" y="41" text-anchor="middle" font-size="7" fill="#ff9090"
+                font-family="Be Vietnam Pro">Domain</text>
+              <text x="80" y="52" text-anchor="middle" font-size="7" fill="rgba(255,140,140,.6)"
+                font-family="Be Vietnam Pro">19 ngày</text>
+              <circle cx="350" cy="42" r="20" fill="rgba(60,0,0,.5)" stroke="rgba(160,40,40,.5)" stroke-width="1" />
+              <text x="350" y="38" text-anchor="middle" font-size="7" fill="#ff9090" font-family="Be Vietnam Pro">847
+                TK</text>
+              <text x="350" y="49" text-anchor="middle" font-size="7" fill="rgba(255,140,140,.6)"
+                font-family="Be Vietnam Pro">Ảo</text>
+              <circle cx="55" cy="158" r="20" fill="rgba(60,0,0,.5)" stroke="rgba(160,40,40,.5)" stroke-width="1" />
+              <text x="55" y="154" text-anchor="middle" font-size="7" fill="#ff9090" font-family="Be Vietnam Pro">TK
+                NH</text>
+              <text x="55" y="165" text-anchor="middle" font-size="7" fill="rgba(255,140,140,.6)"
+                font-family="Be Vietnam Pro">Báo 14×</text>
+              <circle cx="370" cy="162" r="20" fill="rgba(60,0,0,.5)" stroke="rgba(160,40,40,.5)" stroke-width="1" />
+              <text x="370" y="158" text-anchor="middle" font-size="7" fill="#ff9090" font-family="Be Vietnam Pro">Nạn
+                nhân</text>
+              <text x="370" y="169" text-anchor="middle" font-size="7" fill="rgba(255,140,140,.6)"
+                font-family="Be Vietnam Pro">Hàng chục</text>
+              <circle cx="210" cy="30" r="16" fill="rgba(60,0,0,.5)" stroke="rgba(160,40,40,.5)" stroke-width="1" />
+              <text x="210" y="26" text-anchor="middle" font-size="7" fill="#ff9090" font-family="Be Vietnam Pro">Điều
+                174</text>
+              <text x="210" y="37" text-anchor="middle" font-size="7" fill="rgba(255,140,140,.7)"
+                font-family="Be Vietnam Pro">BLHS</text>
+            </svg>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-3xl t-pale font-bold mb-5">Mạng Nhện <span class="t-blue">Lừa Đảo</span>
+        </h2>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <div class="pale-card p-4">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] uppercase font-mono mb-2">🕸️ Domain</p>
+            <p class="t-pale text-xs leading-relaxed"><strong class="t-blood">19 ngày tuổi.</strong> Ảnh review là stock
+              Shutterstock từ Argentina, có thể tra ngược.</p>
+          </div>
+          <div class="pale-card p-4">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] uppercase font-mono mb-2">📊 Mạng xã hội</p>
+            <p class="t-pale text-xs leading-relaxed"><strong class="t-blood">847</strong> bình luận từ tài khoản 0 bài
+              đăng — toàn bộ được thuê viết.</p>
+          </div>
+          <div class="pale-card p-4">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] uppercase font-mono mb-2">🏦 Ngân hàng</p>
+            <p class="t-pale text-xs leading-relaxed">Số TK bị báo cáo <strong class="t-blood">14 lần</strong> trên
+              ScamAlert VN.</p>
+          </div>
+          <div class="pale-card p-4">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] uppercase font-mono mb-2">⚖️ Pháp lý</p>
+            <p class="t-pale text-xs leading-relaxed"><strong class="t-blood">Đ.174 & 320 BLHS.</strong> Tù lên đến 20
+              năm.</p>
+          </div>
+        </div>
+        <div class="q-red mb-6">
+          <p class="t-amber text-[10px] font-semibold uppercase mb-1">📚 Mác–Lênin · Nguồn gốc kinh tế–xã hội</p>
+          <p class="t-ghost text-xs italic leading-relaxed">"Trong thời đại số, mê tín không còn phát sinh thuần túy từ
+            ngu dốt mà từ việc <strong class="t-pale">có người chủ động kinh doanh nỗi sợ hãi</strong> của người khác."
+          </p>
+        </div>
+        <button onclick="goTo('s-altar')" class="btn-dark w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-incense"></i> Tiếng cửa mở. Em trai về rồi.</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SCENE 5 · ALTAR ══════════════════════════════════ -->
+  <section id="s-altar" class="scene">
+    <div class="wm t-seal" style="color:rgba(50,30,0,.07);font-size:clamp(130px,25vw,300px)">靈</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(140,100,0,.7),transparent)"></div>
+          <div>
+            <p class="t-amber text-[10px] tracking-[.3em] font-mono uppercase">Cảnh 04 · Bàn thờ</p>
+            <p class="t-ghost text-xs mt-0.5">Trong lúc chờ, bạn đứng trước bàn thờ gia tiên</p>
+          </div>
+        </div>
+        <div class="horror-card p-6 mb-5 relative" style="border-color:rgba(120,80,0,.4);background:rgba(12,7,0,.88)">
+          <div class="co-tl-p"></div>
+          <div class="co-br-p"></div>
+          <div class="flex justify-center items-end gap-4 mb-4">
+            <div class="candle-wrap flicker">
+              <div class="candle-glow"></div>
+              <div class="candle-flame"></div>
+              <div class="candle-body" style="height:38px"></div>
+            </div>
+            <!-- SVG Incense smoke -->
+            <svg width="60" height="80" viewBox="0 0 60 80" style="overflow:visible">
+              <line x1="30" y1="80" x2="30" y2="50" stroke="#8b6040" stroke-width="2.5" stroke-linecap="round" />
+              <circle cx="30" cy="48" r="4" fill="#ff6600" opacity=".8">
+                <animate attributeName="opacity" values=".6;1;.6" dur="1.2s" repeatCount="indefinite" />
+              </circle>
+              <path d="M30,48 Q22,35 30,22 Q38,10 30,0" stroke="rgba(200,180,160,.25)" stroke-width="2" fill="none"
+                stroke-linecap="round">
+                <animate attributeName="opacity" values="0;.5;0" dur="3s" repeatCount="indefinite" />
+              </path>
+              <path d="M30,48 Q38,32 28,18 Q18,4 28,-8" stroke="rgba(200,180,160,.2)" stroke-width="2" fill="none"
+                stroke-linecap="round">
+                <animate attributeName="opacity" values="0;.4;0" dur="3s" begin="1s" repeatCount="indefinite" />
+              </path>
+            </svg>
+            <div class="candle-wrap flicker" style="animation-delay:.5s">
+              <div class="candle-glow"></div>
+              <div class="candle-flame"></div>
+              <div class="candle-body" style="height:38px"></div>
+            </div>
+          </div>
+          <div class="red-string my-3 mx-auto" style="width:180px"></div>
+          <p class="t-pale text-sm leading-relaxed font-serif italic text-center mb-2">Làn khói hương mỏng. Di ảnh ông
+            nội nhìn xuống bình thản.<br />Bàn thờ này đã ở đây 40 năm — qua chiến tranh, qua nghèo khó.</p>
+          <p class="t-ghost text-xs text-center leading-relaxed">Đây không phải mê tín. Đây là <em class="t-amber">sợi
+              dây nối người còn sống với người đã khuất</em>.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div class="pale-card p-4" style="border-color:rgba(140,100,0,.45)">
+            <p class="t-amber text-[10px] font-semibold uppercase tracking-wider mb-2 flex items-center gap-2"><i
+                class="fa-solid fa-check-circle text-amber-600"></i> Tín ngưỡng truyền thống</p>
+            <div class="space-y-1">
+              <p class="t-ghost text-xs">✦ "Uống nước nhớ nguồn" — đạo hiếu ngàn đời</p>
+              <p class="t-ghost text-xs">✦ Gắn kết gia đình và cộng đồng</p>
+              <p class="t-ghost text-xs">✦ Được Nhà nước VN bảo hộ pháp lý</p>
+              <p class="t-ghost text-xs">✦ Không có giao dịch tài chính ép buộc</p>
+            </div>
+          </div>
+          <div class="horror-card p-4">
+            <p class="t-blood text-[10px] font-semibold uppercase tracking-wider mb-2 flex items-center gap-2"><i
+                class="fa-solid fa-times-circle"></i> Mê tín số · Lừa đảo</p>
+            <div class="space-y-1">
+              <p class="t-ghost text-xs">✗ Không cơ sở lịch sử hay khoa học</p>
+              <p class="t-ghost text-xs">✗ Tạo ra 19 ngày trước — kinh doanh nỗi sợ</p>
+              <p class="t-ghost text-xs">✗ Vi phạm Điều 174, 320 BLHS</p>
+              <p class="t-ghost text-xs">✗ Gây hại tài chính và tâm lý</p>
+            </div>
+          </div>
+        </div>
+        <div class="horror-card p-4 mb-6 font-serif italic"
+          style="border-color:rgba(100,70,0,.4);background:rgba(12,8,0,.88)">
+          <p class="t-ghost text-[10px] font-mono mb-2">[ Tiếng nghĩ thầm ]</p>
+          <p class="t-pale text-sm leading-relaxed">"Ông bà thắp nhang để nhớ người đã khuất — không phải để xin điểm
+            thi. Còn cái thằng lừa đảo kia đang mặc áo tâm linh để móc túi những đứa trẻ đang sợ hãi."</p>
+        </div>
+        <button onclick="goTo('s-dec')" class="btn-dark w-full flex items-center justify-center gap-3 py-4"><span
+            class="t-seal">決断</span> Em trai bước vào phòng. Đây là lúc phải quyết định.</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SCENE 6 · DECISION ═══════════════════════════════ -->
+  <section id="s-dec" class="scene">
+    <div class="wm t-seal" style="color:rgba(40,0,50,.07);font-size:clamp(140px,28vw,330px)">選</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-3xl">
+        <div class="text-center mb-8">
+          <p class="t-amber text-[10px] tracking-[.4em] font-mono uppercase mb-3">Thời khắc then chốt · Ranh giới</p>
+          <div class="red-string w-48 mx-auto mb-5"></div>
+          <h2 class="font-serif text-3xl sm:text-4xl t-pale font-black">Bạn Sẽ <span class="t-blood">Chọn</span> Gì?
+          </h2>
+          <p class="t-ghost text-sm mt-3 max-w-lg mx-auto leading-relaxed">Em trai đang trong phòng. Quyết định của bạn
+            hôm nay sẽ định hình tương lai của cả hai.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mb-7 text-center">
+          <div class="horror-card p-3">
+            <p class="t-blood text-[10px] font-mono uppercase mb-1">Tình thân</p>
+            <div style="height:4px;background:#1a0000;border-radius:2px;overflow:hidden">
+              <div style="width:30%;height:100%;background:linear-gradient(90deg,#6b0000,#cc0000);border-radius:2px">
+              </div>
+            </div>
+            <p class="t-ghost text-[10px] mt-1">Mong manh</p>
+          </div>
+          <div class="horror-card p-3">
+            <p class="t-blood text-[10px] font-mono uppercase mb-1">Tiền mất</p>
+            <div style="height:4px;background:#1a0000;border-radius:2px">
+              <div style="width:100%;height:100%;background:#cc0000;border-radius:2px"></div>
+            </div>
+            <p class="t-ghost text-[10px] mt-1">5 triệu</p>
+          </div>
+          <div class="horror-card p-3">
+            <p class="t-blood text-[10px] font-mono uppercase mb-1">Thời gian</p>
+            <div style="height:4px;background:#1a0000;border-radius:2px">
+              <div style="width:55%;height:100%;background:linear-gradient(90deg,#5a4000,#d4a017);border-radius:2px">
+              </div>
+            </div>
+            <p class="t-ghost text-[10px] mt-1">3 tuần thi</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Three Doorways -->
+        <div class="illust-panel mb-7" style="border-color:rgba(60,20,60,.4);background:rgba(5,2,10,.88)">
+          <div
+            style="display:flex;align-items:flex-end;justify-content:center;gap:18px;padding:1.5rem 1rem 0.5rem;min-height:155px">
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <div
+                style="width:74px;height:118px;background:rgba(45,0,0,.72);border:2px solid rgba(200,0,0,.5);border-radius:7px 7px 0 0;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 22px rgba(180,0,0,.18) inset">
+                <div
+                  style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,rgba(200,0,0,.28) 0%,transparent 65%)">
+                </div>
+                <span style="font-size:30px;font-weight:900;color:#cc2020;position:relative;z-index:1">A</span>
+                <div
+                  style="position:absolute;right:11px;top:52px;width:7px;height:7px;border-radius:50%;background:#880000;box-shadow:0 0 6px rgba(200,0,0,.7)">
+                </div>
+              </div>
+              <div style="width:74px;height:3px;background:rgba(25,0,0,.88)"></div>
+              <p style="font-size:8px;color:rgba(200,80,80,.65);margin-top:5px;letter-spacing:.1em;font-weight:700">THỜ
+                Ơ</p>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <div
+                style="width:74px;height:118px;background:rgba(38,18,0,.72);border:2px solid rgba(180,100,0,.5);border-radius:7px 7px 0 0;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 22px rgba(160,80,0,.18) inset">
+                <div
+                  style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,rgba(180,100,0,.28) 0%,transparent 65%)">
+                </div>
+                <span style="font-size:30px;font-weight:900;color:#c87020;position:relative;z-index:1">B</span>
+                <div
+                  style="position:absolute;right:11px;top:52px;width:7px;height:7px;border-radius:50%;background:#704000;box-shadow:0 0 6px rgba(180,100,0,.7)">
+                </div>
+              </div>
+              <div style="width:74px;height:3px;background:rgba(20,10,0,.88)"></div>
+              <p style="font-size:8px;color:rgba(200,130,60,.65);margin-top:5px;letter-spacing:.1em;font-weight:700">TỨC
+                GIẬN</p>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <div
+                style="width:74px;height:118px;background:rgba(0,14,38,.72);border:2px solid rgba(20,80,180,.5);border-radius:7px 7px 0 0;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 22px rgba(20,80,180,.18) inset">
+                <div
+                  style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,rgba(20,80,180,.28) 0%,transparent 65%)">
+                </div>
+                <span style="font-size:30px;font-weight:900;color:#60a5fa;position:relative;z-index:1">C</span>
+                <div
+                  style="position:absolute;right:11px;top:52px;width:7px;height:7px;border-radius:50%;background:#153878;box-shadow:0 0 6px rgba(20,80,180,.7)">
+                </div>
+              </div>
+              <div style="width:74px;height:3px;background:rgba(0,7,22,.88)"></div>
+              <p style="font-size:8px;color:rgba(90,150,220,.65);margin-top:5px;letter-spacing:.1em;font-weight:700">
+                BÌNH TÂM</p>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4 mb-6">
+          <button class="choice-card ch-a p-5" onclick="goTo('s-b1')">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 flex-shrink-0 rounded-full flex items-center justify-center font-black text-lg"
+                style="background:rgba(60,0,0,.45);border:1px solid rgba(140,0,0,.55);color:#cc2020">A</div>
+              <div>
+                <p class="t-ghost text-[10px] uppercase tracking-wider mb-1.5">Thờ ơ · Mặc kệ</p>
+                <p class="t-pale text-sm font-semibold leading-snug mb-1.5">"Có thờ có thiêng, có kiêng có lành. Đã mất
+                  tiền rồi — cho em nó mua đi."</p>
+                <p class="t-ghost text-xs">Bạn không muốn xung đột. Không muốn phá vỡ hy vọng của em — dù mỏng manh đến
+                  đâu.</p>
+              </div>
+            </div>
+          </button>
+          <button class="choice-card ch-b p-5" onclick="goTo('s-n1')">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 flex-shrink-0 rounded-full flex items-center justify-center font-black text-lg"
+                style="background:rgba(50,25,0,.45);border:1px solid rgba(160,90,0,.55);color:#c87020">B</div>
+              <div>
+                <p class="t-ghost text-[10px] uppercase tracking-wider mb-1.5">Tức giận · Áp đặt</p>
+                <p class="t-pale text-sm font-semibold leading-snug mb-1.5">"Tịch thu điện thoại, cấm túc và mắng em là
+                  kẻ ngu ngốc."</p>
+                <p class="t-ghost text-xs">Cơn giận dâng lên không thể kìm nén. Bạn muốn chấm dứt ngay sự việc bằng mọi
+                  giá.</p>
+              </div>
+            </div>
+          </button>
+          <button class="choice-card ch-c p-5" onclick="goTo('s-g1')">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 flex-shrink-0 rounded-full flex items-center justify-center font-black text-lg"
+                style="background:rgba(0,20,50,.45);border:1px solid rgba(20,80,160,.55);color:#60a5fa">C</div>
+              <div>
+                <p class="t-ghost text-[10px] uppercase tracking-wider mb-1.5">Bình tâm · Thấu hiểu</p>
+                <p class="t-pale text-sm font-semibold leading-snug mb-1.5">"Khuyên em thắp nhang bàn thờ gia tiên rồi
+                  cùng phân tích sự thật."</p>
+                <p class="t-ghost text-xs">Em đang sợ — không phải ngu ngốc. Điều đó cần cả đồng cảm lẫn tri thức.</p>
+              </div>
+            </div>
+          </button>
+        </div>
+        <p class="text-center t-ghost text-[11px] italic">Không có lựa chọn nào dễ dàng. Hãy suy nghĩ trước khi chọn.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH A · BAD · SCENE 1 ════════════════════════════ -->
+  <section id="s-b1" class="scene">
+    <div class="wm t-seal" style="color:rgba(60,0,0,.05)">業</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"></div>
+          <div>
+            <p class="t-blood text-[10px] tracking-[.3em] font-mono uppercase">Con đường A · Cảnh 1</p>
+            <p class="t-ghost text-xs mt-0.5">Bạn không nói gì. Em mỉm cười và bước vào phòng.</p>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Sự <span class="t-blood">Im Lặng</span> Đồng Lõa</h2>
+        <!-- ILLUSTRATION: Scammer chat messages -->
+        <div class="illust-panel mb-5" style="border-color:rgba(120,0,0,.48);background:rgba(8,2,2,.92)">
+          <div style="padding:1rem 1.2rem">
+            <p style="font-size:9px;color:rgba(180,80,80,.45);font-style:italic;margin-bottom:8px">[ Tin nhắn từ "Đại Sư
+              Tâm Linh" ]</p>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div
+                style="background:rgba(35,8,8,.88);border:1px solid rgba(100,20,20,.42);border-radius:10px 10px 10px 2px;padding:6px 11px;font-size:10px;color:#ffb0a0;max-width:88%;animation:msgSlideIn .4s .2s ease-out both">
+                🔮 Bùa của bạn đã được kích hoạt theo nghi lễ 7 đời!</div>
+              <div
+                style="background:rgba(35,8,8,.88);border:1px solid rgba(100,20,20,.42);border-radius:10px 10px 10px 2px;padding:6px 11px;font-size:10px;color:#ffb0a0;max-width:90%;animation:msgSlideIn .4s .8s ease-out both">
+                Hãy tin tuyệt đối — mọi hoài nghi sẽ phá hỏng linh lực!</div>
+              <div
+                style="background:rgba(75,4,4,.94);border:1px solid rgba(180,20,20,.55);border-radius:10px 10px 10px 2px;padding:7px 11px;font-size:10px;color:#ff9090;font-weight:700;max-width:95%;animation:msgSlideIn .4s 1.4s ease-out both">
+                ⚠️ Bùa đang bị hắc khí! Cần thêm <strong style="color:#ff4444">3.000.000đ</strong> để giải trừ ngay!
+              </div>
+              <div
+                style="background:rgba(95,2,2,.97);border:1px solid rgba(240,20,20,.65);border-radius:10px 10px 10px 2px;padding:7px 11px;font-size:10px;color:#ff5050;font-weight:800;max-width:100%;animation:msgSlideIn .4s 2s ease-out both">
+                ☠️ KHẨN CẤP: Nếu không trong 24h — <span style="text-decoration:underline">GIA ĐÌNH</span> sẽ gặp ĐẠI
+                NẠN!!</div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4 mb-6">
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 1</p>
+            <p class="t-pale text-sm leading-relaxed">Em nhận email từ "Đại Sư": <em class="t-amber">"Bùa đã được kích
+                hoạt theo nghi lễ 7 đời truyền thừa. Mọi hoài nghi sẽ phá hỏng hiệu lực."</em> Em đọc đi đọc lại bảy lần
+              trước khi ngủ.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 4</p>
+            <p class="t-pale text-sm leading-relaxed">Em thực hiện "nghi lễ hàng ngày": thắp 3 nén hương lúc 3 giờ sáng,
+              đọc thần chú 49 lần. Mắt có quầng thâm. Sách giáo khoa đóng bụi.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 8</p>
+            <p class="t-pale text-sm leading-relaxed">Tin nhắn mới: <em class="t-blood">"Bùa đang bị hắc khí tấn công.
+                Cần làm thêm nghi lễ giải trừ — 3 triệu đồng. Nếu không, gia đình sẽ gặp nạn."</em></p>
+          </div>
+        </div>
+        <div class="q-red mb-6">
+          <p class="t-blood text-[10px] font-mono uppercase tracking-wider mb-1">⚠ Kỹ thuật Fear Escalation</p>
+          <p class="t-ghost text-xs italic leading-relaxed">Sau khi nạn nhân đã trả tiền lần đầu, kẻ lừa đảo tạo ra mối
+            đe dọa mới liên tục để vắt kiệt. Mỗi lần từ chối đều đi kèm lời nguyền đe dọa gia đình.</p>
+        </div>
+        <button onclick="goTo('s-b2')" class="btn-dark w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Tiếp tục → Ngày 12…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH A · BAD · SCENE 2 ════════════════════════════ -->
+  <section id="s-b2" class="scene">
+    <div class="wm t-seal" style="color:rgba(70,0,0,.05)">貪</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"></div>
+          <div>
+            <p class="t-blood text-[10px] tracking-[.3em] font-mono uppercase">Con đường A · Cảnh 2</p>
+            <p class="t-ghost text-xs mt-0.5">Ngày 12 · Kẻ lừa đảo leo thang</p>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Vòng Xoáy <span class="t-blood">Không Lối Thoát</span>
+        </h2>
+        <!-- ILLUSTRATION: Money vanishing -->
+        <div class="illust-panel mb-5" style="border-color:rgba(100,0,0,.42)">
+          <div style="display:flex;align-items:center;justify-content:center;gap:20px;padding:1.2rem 1.5rem">
+            <svg viewBox="0 0 142 118" style="width:142px;height:118px;overflow:visible;flex-shrink:0">
+              <rect x="10" y="44" width="70" height="50" rx="5" fill="rgba(35,18,0,.72)" stroke="rgba(100,55,0,.45)"
+                stroke-width="1.5" />
+              <rect x="45" y="37" width="35" height="18" rx="3" fill="rgba(28,14,0,.72)" stroke="rgba(80,45,0,.4)"
+                stroke-width="1" />
+              <text x="45" y="73" text-anchor="middle" font-size="10" fill="rgba(180,80,80,.62)" font-weight="700"
+                font-family="sans-serif">TRỐNG</text>
+              <g style="animation:moneyFly1 2.2s linear infinite">
+                <rect x="80" y="47" width="42" height="20" rx="3" fill="rgba(0,70,0,.68)" stroke="rgba(0,140,0,.35)"
+                  stroke-width="1" />
+                <text x="101" y="61" text-anchor="middle" font-size="9" fill="rgba(80,220,80,.68)" font-weight="700"
+                  font-family="sans-serif">500K</text>
+              </g>
+              <g style="animation:moneyFly2 2.2s .4s linear infinite">
+                <rect x="84" y="66" width="36" height="17" rx="3" fill="rgba(0,50,70,.68)" stroke="rgba(0,100,150,.35)"
+                  stroke-width="1" />
+                <text x="102" y="78" text-anchor="middle" font-size="8" fill="rgba(80,180,220,.68)" font-weight="700"
+                  font-family="sans-serif">200K</text>
+              </g>
+              <g style="animation:moneyFly3 2.2s .8s linear infinite">
+                <rect x="77" y="29" width="34" height="16" rx="3" fill="rgba(55,0,70,.68)" stroke="rgba(110,0,150,.35)"
+                  stroke-width="1" />
+                <text x="94" y="41" text-anchor="middle" font-size="8" fill="rgba(180,80,220,.68)" font-weight="700"
+                  font-family="sans-serif">100K</text>
+              </g>
+              <circle cx="126" cy="84" r="7" fill="rgba(150,120,0,.52)" stroke="rgba(220,180,0,.35)" stroke-width="1"
+                style="animation:coinSpin 2.2s .6s linear infinite" />
+              <circle cx="137" cy="54" r="5" fill="rgba(140,110,0,.48)" stroke="rgba(200,160,0,.3)" stroke-width="1"
+                style="animation:coinSpin 2.2s 1s linear infinite" />
+            </svg>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div
+                style="background:rgba(12,4,4,.78);border:1px solid rgba(80,15,15,.42);border-radius:6px;padding:8px 12px;text-align:center;min-width:100px">
+                <p style="font-size:9px;color:rgba(200,100,100,.68);font-weight:700">💰 Tiết kiệm 2 năm</p>
+                <p style="font-size:13px;color:#cc2020;font-weight:900;text-decoration:line-through;opacity:.5">
+                  5.000.000đ</p>
+                <p style="font-size:9px;color:rgba(200,80,80,.72);font-weight:800">→ Mất trắng</p>
+              </div>
+              <div
+                style="background:rgba(12,4,4,.78);border:1px solid rgba(80,15,15,.42);border-radius:6px;padding:8px 12px;text-align:center">
+                <p style="font-size:9px;color:rgba(200,100,100,.68);font-weight:700">👜 Ví mẹ</p>
+                <p style="font-size:13px;color:#cc2020;font-weight:900;text-decoration:line-through;opacity:.5">
+                  3.000.000đ</p>
+                <p style="font-size:9px;color:rgba(200,80,80,.72);font-weight:800">→ Mất trắng</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4 mb-5">
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 12 · 23:00</p>
+            <p class="t-pale text-sm leading-relaxed">Em không có 3 triệu. Em nhìn sang chiếc ví của mẹ trên bàn bếp.
+              Tay em run. <em class="t-blood">Bạn đứng ở hành lang, thấy tất cả — nhưng vẫn im lặng.</em></p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 13 · Sáng sớm</p>
+            <p class="t-pale text-sm leading-relaxed">3 triệu từ ví mẹ biến mất. Mẹ tưởng nhầm hôm qua. Bạn biết sự thật
+              nhưng vẫn không nói. <strong class="t-blood">Sự im lặng của bạn giờ đã thành đồng lõa.</strong></p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 15 · Bẫy Sunk Cost</p>
+            <p class="t-pale text-sm leading-relaxed">Em bắt đầu nghi ngờ — nhưng nhớ: <em>"Mình đã bỏ 8 triệu vào đây
+                rồi. Bỏ cuộc thì hoá ra tất cả đều vô nghĩa."</em> Đây chính là bẫy tâm lý kẻ lừa đảo tính đến từ đầu.
+            </p>
+          </div>
+        </div>
+        <button onclick="goTo('s-b3')" class="btn-dark w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Đêm trước ngày thi…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH A · BAD · SCENE 3 ════════════════════════════ -->
+  <section id="s-b3" class="scene">
+    <div class="wm t-seal" style="color:rgba(80,0,0,.05)">滅</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"></div>
+          <div>
+            <p class="t-blood text-[10px] tracking-[.3em] font-mono uppercase">Con đường A · Cảnh 3</p>
+            <p class="t-ghost text-xs mt-0.5">Đêm trước ngày thi · 02:00</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: 3AM Ritual Clock -->
+        <div class="illust-panel"
+          style="border-color:rgba(100,0,0,.45);background:radial-gradient(ellipse at 50% 50%,rgba(60,0,0,.2) 0%,rgba(5,0,0,.7) 100%)">
+          <div class="illust-ritual-wrap">
+            <!-- SVG Clock -->
+            <svg class="clock-svg" width="130" height="130" viewBox="0 0 130 130">
+              <circle cx="65" cy="65" r="60" fill="rgba(20,0,0,.8)" stroke="rgba(180,0,0,.6)" stroke-width="2" />
+              <circle cx="65" cy="65" r="55" fill="none" stroke="rgba(120,0,0,.3)" stroke-width="1" />
+              <!-- Hour marks -->
+              <g stroke="rgba(180,80,80,.5)" stroke-width="1.5">
+                <line x1="65" y1="12" x2="65" y2="20" />
+                <line x1="65" y1="110" x2="65" y2="118" />
+                <line x1="12" y1="65" x2="20" y2="65" />
+                <line x1="110" y1="65" x2="118" y2="65" />
+              </g>
+              <!-- XII, III markings -->
+              <text x="65" y="28" text-anchor="middle" font-size="9" fill="rgba(200,100,100,.8)"
+                font-family="serif">XII</text>
+              <text x="105" y="68" text-anchor="middle" font-size="9" fill="rgba(200,100,100,.8)"
+                font-family="serif">III</text>
+              <text x="65" y="110" text-anchor="middle" font-size="9" fill="rgba(200,100,100,.8)"
+                font-family="serif">VI</text>
+              <text x="25" y="68" text-anchor="middle" font-size="9" fill="rgba(200,100,100,.8)"
+                font-family="serif">IX</text>
+              <!-- Minute hand (pointing to 12) -->
+              <line x1="65" y1="65" x2="65" y2="20" stroke="#cc2020" stroke-width="2.5" stroke-linecap="round" />
+              <!-- Hour hand (pointing to 3) -->
+              <line x1="65" y1="65" x2="100" y2="65" stroke="#990000" stroke-width="3.5" stroke-linecap="round" />
+              <!-- Center dot -->
+              <circle cx="65" cy="65" r="4" fill="#cc2020" />
+              <!-- Glow rings -->
+              <circle cx="65" cy="65" r="62" fill="none" stroke="rgba(180,0,0,.15)" stroke-width="8">
+                <animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite" />
+              </circle>
+            </svg>
+            <!-- Ritual items -->
+            <div class="ritual-items">
+              <div class="charm-paper">符</div>
+              <div class="incense-bundle">
+                <div class="incense-stick" style="height:55px"></div>
+                <div class="incense-stick" style="height:65px">
+                  <svg style="position:absolute;top:-30px;left:-8px;overflow:visible" width="20" height="30"
+                    viewBox="0 0 20 30">
+                    <path d="M10,30 Q5,20 10,12 Q15,4 10,-5" stroke="rgba(200,180,160,.3)" stroke-width="2" fill="none"
+                      class="smoke-stream" />
+                    <path d="M10,30 Q15,18 8,8 Q2,0 10,-10" stroke="rgba(200,180,160,.2)" stroke-width="1.5" fill="none"
+                      class="smoke-stream" style="animation-delay:1s" />
+                  </svg>
+                </div>
+                <div class="incense-stick" style="height:50px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Căn Phòng <span class="t-blood">Của Kẻ Bị Lừa</span></h2>
+        <div class="space-y-4 mb-5">
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">02:00 sáng</p>
+            <p class="t-pale text-sm leading-relaxed">Em ngồi giữa sàn. Hương thắp khắp nhà. Tờ "bùa" in laser cuộn
+              trong tay. Ba cuốn đề cương vẫn nguyên tem. Môi thì thầm đếm — <em>1, 2, 3… 47, 48, 49</em>.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">02:45 · Điện thoại hết pin</p>
+            <p class="t-pale text-sm leading-relaxed">Không liên lạc được với "Đại Sư". Em hoảng loạn: <em
+                class="t-blood">"Không xác nhận lần cuối thì bùa có bị hỏng không?"</em> Em la to thất thanh. Mẹ bật
+              dậy. Bạn nghe thấy qua vách. Và vẫn nằm im.</p>
+          </div>
+        </div>
+        <div class="q-red mb-5">
+          <p class="t-blood text-[10px] uppercase tracking-wider mb-1">Phân tích tâm lý</p>
+          <p class="t-ghost text-xs italic leading-relaxed">Niềm tin vào bùa làm giảm động lực học tập và tăng lo lắng
+            khi nghi ngờ — hiệu ứng Nocebo ngược chiều. Kết quả: thi với đầu óc trống rỗng sau 5 tiếng không ngủ.</p>
+        </div>
+        <button onclick="goTo('s-b4')" class="btn-dark w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Kết quả và hậu quả…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH A · BAD · SCENE 4 ════════════════════════════ -->
+  <section id="s-b4" class="scene">
+    <div class="wm t-seal" style="color:rgba(80,0,0,.055)">喪</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"></div>
+          <div>
+            <p class="t-blood text-[10px] tracking-[.3em] font-mono uppercase">Con đường A · Cảnh 4</p>
+            <p class="t-ghost text-xs mt-0.5">Sau kỳ thi · Hậu quả domino</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Domino Cascade -->
+        <div class="illust-panel" style="border-color:rgba(100,0,0,.4)">
+          <div class="illust-dominos-wrap">
+            <div class="domino"
+              style="background:rgba(60,0,0,.7);border:1px solid rgba(160,30,30,.5);color:#ffaaaa;height:64px">
+              <span style="font-size:16px">💸</span><span style="font-size:8px;font-weight:700">Tiền</span>
+              <div class="domino-label">8 triệu mất</div>
+            </div>
+            <div class="domino"
+              style="background:rgba(50,10,0,.7);border:1px solid rgba(150,50,0,.5);color:#ffcc88;height:72px">
+              <span style="font-size:16px">📚</span><span style="font-size:8px;font-weight:700">Học</span>
+              <div class="domino-label">Bỏ ôn thi</div>
+            </div>
+            <div class="domino"
+              style="background:rgba(40,20,0,.7);border:1px solid rgba(140,80,0,.5);color:#ffd070;height:80px">
+              <span style="font-size:16px">😰</span><span style="font-size:8px;font-weight:700">Tâm lý</span>
+              <div class="domino-label">Trầm cảm</div>
+            </div>
+            <div class="domino"
+              style="background:rgba(30,30,0,.7);border:1px solid rgba(120,120,0,.5);color:#ffff70;height:72px">
+              <span style="font-size:16px">📝</span><span style="font-size:8px;font-weight:700">Thi</span>
+              <div class="domino-label">Trượt đại học</div>
+            </div>
+            <div class="domino"
+              style="background:rgba(20,30,20,.7);border:1px solid rgba(80,120,80,.4);color:#80d080;height:64px">
+              <span style="font-size:16px">👻</span><span style="font-size:8px;font-weight:700">Tương lai</span>
+              <div class="domino-label">???</div>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Domino <span class="t-blood">Sụp Đổ</span></h2>
+        <div class="space-y-4 mb-5">
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Tuần 1 sau thi</p>
+            <p class="t-pale text-sm leading-relaxed">Em trượt. "Đại Sư" block mọi liên lạc. Số điện thoại không liên
+              lạc được. Tài khoản mạng xã hội đã xóa.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Tuần 2 · Sự thật phơi bày</p>
+            <p class="t-pale text-sm leading-relaxed">Mẹ phát hiện 3 triệu trong ví biến mất. Rồi 5 triệu của em. Câu
+              chuyện đổ ra. Bạn — đứng ở hành lang hôm đó và im lặng — không có gì để nói.</p>
+          </div>
+          <div class="horror-card p-5 relative">
+            <div class="co-tl"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Tháng 2</p>
+            <p class="t-pale text-sm leading-relaxed">Em không nói chuyện với ai trong gia đình suốt 6 tuần. <em
+                class="t-blood">Kẻ lừa đảo tiếp tục bán bùa cho hàng chục nạn nhân khác</em> — vì không ai tố giác.</p>
+          </div>
+        </div>
+        <button onclick="goTo('s-bend')" class="btn-dark w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-skull"></i> Kết cục cuối cùng →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH A · BAD ENDING ══════════════════════════════ -->
+  <section id="s-bend" class="scene">
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl text-center">
+        <div class="flicker text-7xl mb-5">💀</div>
+        <div class="inline-block px-4 py-1.5 mb-5 rounded text-[10px] font-bold tracking-widest uppercase"
+          style="border:1px solid rgba(140,0,0,.6);color:#cc2020;background:rgba(25,0,0,.5)">KẾT CỤC · BI KỊCH MÊ TÍN DỊ
+          ĐOAN</div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-black t-blood mb-7"
+          style="text-shadow:0 0 30px rgba(180,0,0,.5)">BI KỊCH MÊ TÍN DỊ ĐOAN</h2>
+        <!-- ILLUSTRATION: Dark void of consequences -->
+        <div class="illust-panel mb-5" style="border-color:rgba(80,0,0,.52);background:rgba(4,0,0,.96)">
+          <div style="position:relative;height:148px;overflow:hidden">
+            <div
+              style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(25,0,0,.5) 0%,rgba(0,0,0,.88) 70%)">
+            </div>
+            <div
+              style="position:absolute;left:12%;top:15%;font-size:26px;opacity:.4;animation:voidFloat1 4s ease-in-out infinite">
+              📖</div>
+            <div
+              style="position:absolute;right:18%;top:25%;font-size:22px;opacity:.35;animation:voidFloat2 5s ease-in-out infinite">
+              💸</div>
+            <div
+              style="position:absolute;left:28%;bottom:22%;font-size:20px;opacity:.3;animation:voidFloat3 3.8s ease-in-out infinite">
+              📱</div>
+            <div
+              style="position:absolute;right:12%;bottom:18%;font-size:18px;opacity:.28;animation:voidFloat1 4.5s 1s ease-in-out infinite">
+              🎓</div>
+            <div
+              style="position:absolute;left:62%;top:12%;font-size:16px;opacity:.25;animation:voidFloat2 3.5s .5s ease-in-out infinite">
+              💔</div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
+              <div
+                style="font-size:46px;animation:skullPulse 2.2s ease-in-out infinite;filter:grayscale(1) brightness(.55)">
+                💀</div>
+              <p
+                style="font-size:9px;color:rgba(180,40,40,.62);letter-spacing:.18em;font-weight:700;margin-top:5px;white-space:nowrap">
+                8.000.000đ · MẤT TRẮNG</p>
+            </div>
+          </div>
+        </div>
+        <div class="horror-card p-6 mb-5 text-left relative">
+          <div class="co-tl"></div>
+          <div class="co-br"></div>
+          <p class="t-pale text-sm leading-relaxed mb-3">Em trượt đại học. 8 triệu đồng biến mất không dấu vết. Kẻ lừa
+            đảo đến nay vẫn chưa bị bắt vì không ai tố giác kịp thời.</p>
+          <p class="t-pale text-sm leading-relaxed">Sự im lặng của bạn ban đầu tưởng là trung lập — nhưng thực ra
+            <strong class="t-blood">đã tiếp tay cho kẻ xấu tiếp tục vận hành</strong>.</p>
+        </div>
+        <div class="lesson-card p-5 mb-7 text-left">
+          <p class="text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4 flex items-center gap-2"><i
+              class="fa-solid fa-graduation-cap"></i> Bài học Mác–Lênin</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3"><i
+                class="fa-solid fa-circle-minus text-purple-500 text-sm flex-shrink-0 mt-0.5"></i>
+              <p class="t-ghost text-xs leading-relaxed"><strong class="t-pale">Định nghĩa:</strong> Mê tín dị đoan là
+                niềm tin mù quáng vào lực lượng siêu nhiên, không có cơ sở khoa học, gây hao tổn tài sản và tổn hại cá
+                nhân, gia đình và xã hội.</p>
+            </div>
+            <div class="flex items-start gap-3"><i
+                class="fa-solid fa-circle-minus text-purple-500 text-sm flex-shrink-0 mt-0.5"></i>
+              <p class="t-ghost text-xs leading-relaxed"><strong class="t-pale">Im lặng = đồng lõa:</strong> Khi bạn
+                biết có người đang bị lừa mà không hành động, bạn trở thành mắt xích trong vòng lặp gây hại đó.</p>
+            </div>
+            <div class="flex items-start gap-3"><i
+                class="fa-solid fa-circle-minus text-purple-500 text-sm flex-shrink-0 mt-0.5"></i>
+              <p class="t-ghost text-xs leading-relaxed"><strong class="t-pale">Điều 174 BLHS:</strong> Kẻ lừa đảo có
+                thể bị phạt tù đến 20 năm — nhưng chỉ khi bị tố giác.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="restartGame()" class="btn-dark flex items-center justify-center gap-3"><i
+              class="fa-solid fa-rotate-left text-sm"></i> Chơi lại từ đầu</button>
+          <button onclick="goTo('s-dec')" class="btn-ghost flex items-center justify-center gap-3"><i
+              class="fa-solid fa-arrow-left text-sm"></i> Quay lại lựa chọn</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH B · NEUTRAL · SCENE 1 ═══════════════════════ -->
+  <section id="s-n1" class="scene">
+    <div class="wm t-seal" style="color:rgba(50,30,0,.05)">怒</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(150,90,0,.7),transparent)"></div>
+          <div>
+            <p class="t-amber text-[10px] tracking-[.3em] font-mono uppercase">Con đường B · Cảnh 1</p>
+            <p class="t-ghost text-xs mt-0.5">Bạn bùng phát.</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Broken Speech Bubbles -->
+        <div class="illust-panel" style="border-color:rgba(120,70,0,.4)">
+          <div class="illust-speech-wrap">
+            <div style="flex:1;display:flex;justify-content:flex-start">
+              <div class="speech-bubble sb-left">"Mày nghĩ tao không biết sao?!"<br /><span
+                  style="font-size:9px;opacity:.7;margin-top:4px;display:block">— Bạn</span></div>
+            </div>
+            <div class="speech-crack" style="flex-shrink:0">
+              <div class="crack-line"
+                style="width:2px;height:30px;background:linear-gradient(to bottom,rgba(200,50,50,.4),transparent)">
+              </div>
+              <span style="font-size:18px">💢</span>
+              <div class="crack-line"
+                style="width:2px;height:20px;background:linear-gradient(to bottom,transparent,rgba(200,100,0,.4))">
+              </div>
+            </div>
+            <div style="flex:1;display:flex;justify-content:flex-end">
+              <div class="speech-bubble sb-right" style="opacity:.5;font-style:italic">[im lặng]<br /><span
+                  style="font-size:9px;opacity:.7;margin-top:4px;display:block">— Em trai</span></div>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Những Lời <span class="t-amber">Không Thể Rút Lại</span>
+        </h2>
+        <div class="space-y-4 mb-5">
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">18:02 · Đối đầu</p>
+            <p class="t-pale text-sm leading-relaxed">Bạn chặn cửa phòng. Giật điện thoại khỏi tay em. Mặt em tái dần.
+            </p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">18:07 · Những lời trúng đích sai</p>
+            <p class="t-pale text-sm leading-relaxed"><em class="t-blood">"Sáng ngốc vứt 5 triệu vào rác. Người như mày
+                thi làm gì cho tốn tiền nhà?"</em> Em đứng im. Mắt đỏ. Không khóc. Cái im lặng đó còn đáng sợ hơn.</p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">22:30 · Tờ giấy trên bàn</p>
+            <p class="t-pale text-sm leading-relaxed">Phòng em trống. Trên bàn: <em class="t-amber">"Anh không hiểu em.
+                Em chỉ đang sợ thôi. Con sẽ về khi nào anh bình tĩnh lại."</em></p>
+          </div>
+        </div>
+        <div class="q-amber mb-5">
+          <p class="t-amber text-[10px] uppercase font-mono mb-1">Phân tích hành vi</p>
+          <p class="t-ghost text-xs italic leading-relaxed">Nhục mạ không xóa được niềm tin sai — nó chỉ đẩy niềm tin đó
+            vào chỗ kín hơn. Em không học được tại sao bùa là lừa đảo; em chỉ học được rằng khi sợ hãi, người thân sẽ
+            xúc phạm mình.</p>
+        </div>
+        <button onclick="goTo('s-n2')" class="btn-neutral w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Những ngày sau đó…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH B · NEUTRAL · SCENES 2–4 (condensed) ════════ -->
+  <section id="s-n2" class="scene">
+    <div class="wm t-seal" style="color:rgba(50,35,0,.05)">離</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(150,90,0,.7),transparent)"></div>
+          <div>
+            <p class="t-amber text-[10px] tracking-[.3em] font-mono uppercase">Con đường B · Cảnh 2</p>
+            <p class="t-ghost text-xs mt-0.5">Những ngày im lặng trong ngôi nhà vắng</p>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Ngôi Nhà <span class="t-amber">Vỡ Vụn</span></h2>
+        <!-- ILLUSTRATION: Empty dinner table -->
+        <div class="illust-panel mb-5" style="border-color:rgba(100,70,0,.42)">
+          <svg viewBox="0 0 320 148" class="w-full" style="max-height:145px;display:block">
+            <rect x="65" y="72" width="190" height="11" rx="4" fill="rgba(55,38,8,.72)" stroke="rgba(110,75,18,.35)"
+              stroke-width="1.2" />
+            <rect x="78" y="83" width="7" height="36" rx="2" fill="rgba(45,30,5,.65)" />
+            <rect x="235" y="83" width="7" height="36" rx="2" fill="rgba(45,30,5,.65)" />
+            <g opacity=".72">
+              <rect x="48" y="88" width="58" height="7" rx="3" fill="rgba(65,42,8,.78)" stroke="rgba(130,85,18,.38)"
+                stroke-width="1" />
+              <rect x="53" y="95" width="5" height="28" rx="2" fill="rgba(50,32,5,.7)" />
+              <rect x="96" y="95" width="5" height="28" rx="2" fill="rgba(50,32,5,.7)" />
+              <rect x="48" y="82" width="58" height="9" rx="3" fill="rgba(75,50,10,.75)" stroke="rgba(130,85,18,.3)"
+                stroke-width="1" />
+              <ellipse cx="77" cy="55" rx="13" ry="15" fill="rgba(190,150,90,.08)" stroke="rgba(190,150,90,.14)"
+                stroke-width="1" />
+              <ellipse cx="77" cy="40" rx="8" ry="9" fill="rgba(190,150,90,.1)" />
+            </g>
+            <g opacity=".32">
+              <rect x="214" y="88" width="58" height="7" rx="3" fill="rgba(45,45,60,.78)" stroke="rgba(75,75,100,.38)"
+                stroke-width="1" />
+              <rect x="219" y="95" width="5" height="28" rx="2" fill="rgba(38,38,52,.7)" />
+              <rect x="262" y="95" width="5" height="28" rx="2" fill="rgba(38,38,52,.7)" />
+              <rect x="214" y="82" width="58" height="9" rx="3" fill="rgba(50,50,65,.75)" stroke="rgba(75,75,100,.3)"
+                stroke-width="1" />
+              <text x="243" y="65" text-anchor="middle" font-size="20" opacity=".5">👻</text>
+            </g>
+            <ellipse cx="128" cy="74" rx="18" ry="5" fill="rgba(65,45,8,.55)" stroke="rgba(110,75,15,.3)"
+              stroke-width="1" />
+            <path d="M122,68 Q118,60 122,53" stroke="rgba(200,175,150,.18)" stroke-width="1.5" fill="none"
+              stroke-linecap="round" />
+            <ellipse cx="192" cy="74" rx="18" ry="5" fill="rgba(40,40,55,.35)" stroke="rgba(70,70,95,.2)"
+              stroke-width="1" stroke-dasharray="4 2" />
+            <text x="160" y="140" text-anchor="middle" font-size="9" fill="rgba(150,110,55,.45)" font-family="serif"
+              font-style="italic">Bữa tối không đủ người</text>
+          </svg>
+        </div>
+        <div class="space-y-4 mb-5">
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 2 · Em ngủ nhà bạn</p>
+            <p class="t-pale text-sm leading-relaxed">Bữa tối nhà chỉ có hai người, tiếng đũa gõ bát nghe như vang xa.
+              Mẹ gọi không nghe máy.</p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 5 · Em tìm đến người khác</p>
+            <p class="t-pale text-sm leading-relaxed">Một bạn học giới thiệu em với "chuyên gia phong thủy" khác trên
+              Zalo. Không ai giải thích tại sao lần trước là lừa đảo. <strong class="t-blood">Em lại tin.</strong></p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày 9 · Bạn ngồi trước bàn thờ một
+              mình</p>
+            <p class="t-pale text-sm leading-relaxed"><em class="t-ghost">"Mình không giúp em hiểu sự thật. Mình chỉ la
+                mắng em. Bây giờ em đang tìm đến người khác để giải thích — và người đó cũng đang lừa em."</em></p>
+          </div>
+        </div>
+        <button onclick="goTo('s-n3')" class="btn-neutral w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Tuần cuối trước thi…</button>
+      </div>
+    </div>
+  </section>
+  <section id="s-n3" class="scene">
+    <div class="wm t-seal" style="color:rgba(50,35,0,.05)">孤</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(150,90,0,.7),transparent)"></div>
+          <div>
+            <p class="t-amber text-[10px] tracking-[.3em] font-mono uppercase">Con đường B · Cảnh 3</p>
+            <p class="t-ghost text-xs mt-0.5">Tuần cuối · Em thi một mình</p>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Vào Phòng Thi <span class="t-amber">Không Có Ai Bên
+            Cạnh</span></h2>
+        <!-- ILLUSTRATION: Lone figure walking -->
+        <div class="illust-panel mb-5" style="border-color:rgba(100,70,0,.42)">
+          <div style="position:relative;height:150px;overflow:hidden">
+            <div
+              style="position:absolute;inset:0;background:linear-gradient(to top,rgba(12,7,0,.92) 0%,rgba(25,15,5,.5) 50%,rgba(15,10,20,.72) 100%)">
+            </div>
+            <div
+              style="position:absolute;bottom:28px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(80,60,20,.35),transparent)">
+            </div>
+            <div
+              style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:2px;height:30px;background:linear-gradient(to top,rgba(80,60,20,.38),transparent)">
+            </div>
+            <div style="position:absolute;bottom:28px;right:70px;display:flex;align-items:flex-end;gap:40px">
+              <div style="width:8px;height:52px;background:rgba(38,28,8,.88);border-radius:2px 2px 0 0"></div>
+              <div style="width:8px;height:52px;background:rgba(38,28,8,.88);border-radius:2px 2px 0 0"></div>
+            </div>
+            <div
+              style="position:absolute;bottom:76px;right:62px;width:64px;height:20px;border-radius:50% 50% 0 0;border:1.5px solid rgba(70,55,20,.5);border-bottom:none">
+            </div>
+            <p
+              style="position:absolute;bottom:58px;right:70px;font-size:7px;color:rgba(100,80,30,.45);letter-spacing:.08em">
+              TRƯỜNG</p>
+            <div
+              style="position:absolute;bottom:24px;left:36%;font-size:30px;animation:figureWalk 2.5s ease-in-out infinite;opacity:.68">
+              🚶</div>
+            <div
+              style="position:absolute;bottom:28px;right:50px;width:100px;height:80px;background:radial-gradient(ellipse at 50% 100%,rgba(200,150,50,.07) 0%,transparent 70%);pointer-events:none">
+            </div>
+            <p
+              style="position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:9px;color:rgba(160,120,60,.42);font-style:italic">
+              Một mình bước vào phòng thi</p>
+          </div>
+        </div>
+        <div class="space-y-4 mb-5">
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Ngày cuối cùng</p>
+            <p class="t-pale text-sm leading-relaxed">Em ôn cô độc trong phòng trọ bạn cho mượn. Không có ai nhắc ăn
+              tối. Tự nấu mì gói lúc 11 giờ đêm và nhìn vào đề cương toán.</p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Sáng thi · Cổng trường</p>
+            <p class="t-pale text-sm leading-relaxed">Bố mẹ đứng ở cổng chờ. Bạn cũng đến — nhưng không ai nói với nhau.
+              Em nhìn thấy bạn. Gật đầu một cái. Đi vào. <em class="t-ghost">Chừng đó thôi.</em></p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Sau kỳ thi</p>
+            <p class="t-pale text-sm leading-relaxed">Em thiếu 0.5 điểm vào ngành muốn học. Liệu nếu có người đồng hành,
+              liệu kết quả có khác không? Câu hỏi đó không bao giờ có câu trả lời.</p>
+          </div>
+        </div>
+        <button onclick="goTo('s-n4')" class="btn-neutral w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Những tháng sau…</button>
+      </div>
+    </div>
+  </section>
+  <section id="s-n4" class="scene">
+    <div class="wm t-seal" style="color:rgba(50,35,0,.05)">悔</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(150,90,0,.7),transparent)"></div>
+          <div>
+            <p class="t-amber text-[10px] tracking-[.3em] font-mono uppercase">Con đường B · Cảnh 4</p>
+            <p class="t-ghost text-xs mt-0.5">Những tháng sau · Hậu quả dai dẳng</p>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Vết Nứt <span class="t-amber">Không Lành</span></h2>
+        <!-- ILLUSTRATION: Cracked family photo frame -->
+        <div class="illust-panel mb-5" style="border-color:rgba(100,70,0,.42)">
+          <div style="display:flex;align-items:center;justify-content:center;gap:18px;padding:1.4rem">
+            <div
+              style="position:relative;padding:9px;background:linear-gradient(135deg,#18120a,#0e0b05);border:2px solid rgba(85,65,22,.42);border-radius:4px;box-shadow:0 6px 28px rgba(0,0,0,.75);flex-shrink:0">
+              <div
+                style="width:145px;height:95px;background:linear-gradient(135deg,#0d0810,#1a1020);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+                <div style="display:flex;align-items:flex-end;gap:6px;opacity:.28;filter:blur(1.5px)">
+                  <div style="display:flex;flex-direction:column;align-items:center">
+                    <div style="width:14px;height:14px;border-radius:50%;background:rgba(200,160,100,.5)"></div>
+                    <div
+                      style="width:20px;height:28px;background:rgba(200,160,100,.4);border-radius:3px 3px 0 0;margin-top:2px">
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center">
+                    <div style="width:12px;height:12px;border-radius:50%;background:rgba(200,160,100,.5)"></div>
+                    <div
+                      style="width:17px;height:24px;background:rgba(200,160,100,.4);border-radius:3px 3px 0 0;margin-top:2px">
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;align-items:center">
+                    <div style="width:9px;height:9px;border-radius:50%;background:rgba(200,160,100,.5)"></div>
+                    <div
+                      style="width:13px;height:18px;background:rgba(200,160,100,.4);border-radius:3px 3px 0 0;margin-top:2px">
+                    </div>
+                  </div>
+                </div>
+                <svg style="position:absolute;inset:0;width:100%;height:100%">
+                  <path d="M38,0 L68,32 L52,52 L78,95" stroke="rgba(200,50,50,.75)" stroke-width="1.5" fill="none"
+                    stroke-linecap="round" />
+                  <path d="M52,52 L33,72 L42,95" stroke="rgba(200,50,50,.45)" stroke-width="1" fill="none"
+                    stroke-linecap="round" />
+                  <path d="M68,32 L88,22" stroke="rgba(200,50,50,.3)" stroke-width=".8" fill="none" />
+                </svg>
+              </div>
+              <p style="text-align:center;font-size:7px;color:rgba(110,85,38,.45);margin-top:5px;letter-spacing:.12em">
+                GIA ĐÌNH · 2025</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div
+                style="background:rgba(12,8,0,.75);border:1px solid rgba(90,62,0,.38);border-radius:6px;padding:7px 11px">
+                <p style="font-size:9px;color:rgba(195,135,55,.68);font-weight:700">📅 Tháng 1 · 2026</p>
+                <p style="font-size:9px;color:rgba(155,120,70,.45);margin-top:2px">Em về nhà — im lặng</p>
+              </div>
+              <div
+                style="background:rgba(12,8,0,.75);border:1px solid rgba(90,62,0,.38);border-radius:6px;padding:7px 11px">
+                <p style="font-size:9px;color:rgba(195,95,70,.68);font-weight:700">📅 Tháng 3 · 2026</p>
+                <p style="font-size:9px;color:rgba(155,90,70,.45);margin-top:2px">"Con không bao giờ quên..."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4 mb-5">
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Tháng 1</p>
+            <p class="t-pale text-sm leading-relaxed">Em về nhà. Mối quan hệ tái lập bề ngoài — nhưng bàn ăn vẫn thiếu
+              đi điều gì đó. Em không kể chuyện với bạn nữa.</p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Tháng 3 · Câu nói vẫn còn đó</p>
+            <p class="t-pale text-sm leading-relaxed">Em kể với mẹ: <em class="t-blood">"Con không sợ thi trượt. Con sợ
+                nhất câu anh nói hôm đó: 'người như mày thi làm gì.' Con không bao giờ quên câu đó."</em></p>
+          </div>
+          <div class="pale-card p-5 relative">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Điều còn lại</p>
+            <p class="t-pale text-sm leading-relaxed">Kẻ lừa đảo vẫn chưa bị bắt. Em vẫn chưa hiểu tại sao bùa là sai —
+              vì không ai giải thích cho em.</p>
+          </div>
+        </div>
+        <button onclick="goTo('s-nend')" class="btn-neutral w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-heart-crack"></i> Kết cục cuối cùng →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH B · NEUTRAL ENDING ══════════════════════════ -->
+  <section id="s-nend" class="scene">
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl text-center">
+        <div class="flicker text-7xl mb-5">💔</div>
+        <!-- ILLUSTRATION: Fading candles -->
+        <div class="illust-panel mb-5" style="border-color:rgba(100,65,0,.38);background:rgba(5,3,0,.94)">
+          <div
+            style="display:flex;align-items:flex-end;justify-content:center;gap:55px;padding:1.4rem 1rem 1rem;position:relative">
+            <div
+              style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(130,70,0,.08) 0%,transparent 62%);pointer-events:none">
+            </div>
+            <div
+              style="display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.32;animation:candleFadeAnim 3.2s ease-in-out infinite">
+              <div
+                style="width:8px;height:13px;background:radial-gradient(ellipse at 50% 80%,#fff9b0,#ffa500 45%,transparent);border-radius:50% 50% 20% 20%;filter:blur(1.5px);box-shadow:0 0 6px rgba(255,100,0,.3);animation:flame .75s ease-in-out infinite alternate">
+              </div>
+              <div
+                style="width:11px;height:26px;background:linear-gradient(to right,#ccc0a8,#e8e0d0,#b8b0a0);border-radius:2px">
+              </div>
+              <p style="font-size:8px;color:rgba(155,95,55,.55);margin-top:4px;text-align:center;line-height:1.3">Tình
+                thân<br />đang tắt</p>
+            </div>
+            <div style="text-align:center;font-size:42px;animation:heartFade 3s ease-in-out infinite">💔
+              <p style="font-size:8px;color:rgba(175,75,55,.5);margin-top:5px;letter-spacing:.1em;font-weight:700">ĐỨT
+                GÃY</p>
+            </div>
+            <div
+              style="display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.44;animation:candleFadeAnim 4s .7s ease-in-out infinite">
+              <div
+                style="width:9px;height:16px;background:radial-gradient(ellipse at 50% 80%,#fff9b0,#ffa500 45%,transparent);border-radius:50% 50% 20% 20%;filter:blur(1.2px);box-shadow:0 0 8px rgba(255,120,0,.35);animation:flame .75s ease-in-out infinite alternate">
+              </div>
+              <div
+                style="width:11px;height:34px;background:linear-gradient(to right,#ccc0a8,#e8e0d0,#b8b0a0);border-radius:2px">
+              </div>
+              <p style="font-size:8px;color:rgba(155,95,55,.55);margin-top:4px;text-align:center;line-height:1.3">Hiểu
+                biết<br />chưa đến</p>
+            </div>
+          </div>
+        </div>
+        <div class="inline-block px-4 py-1.5 mb-5 rounded text-[10px] font-bold tracking-widest uppercase"
+          style="border:1px solid rgba(160,100,0,.5);color:#c87020;background:rgba(20,12,0,.5)">KẾT CỤC · ĐỨT GÃY TÌNH
+          THÂN</div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-black mb-7"
+          style="color:#c87020;text-shadow:0 0 25px rgba(180,100,0,.45)">ĐỨT GÃY TÌNH THÂN</h2>
+        <div class="pale-card p-6 mb-5 text-left relative" style="border-color:rgba(130,80,0,.4)">
+          <div class="co-tl-p"></div>
+          <div class="co-br-p"></div>
+          <p class="t-pale text-sm leading-relaxed mb-3">Mối quan hệ anh em mất hai năm để phần nào hàn gắn. Nhưng câu
+            "người như mày thi làm gì" thì em không bao giờ quên.</p>
+          <p class="t-pale text-sm leading-relaxed">Em vẫn không bao giờ hiểu tại sao mua bùa là sai — vì người biết sự
+            thật đã chọn mắng mỏ thay vì giải thích.</p>
+        </div>
+        <div class="lesson-card p-5 mb-7 text-left">
+          <p class="text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4 flex items-center gap-2"><i
+              class="fa-solid fa-graduation-cap"></i> Bài học Mác–Lênin</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3"><i
+                class="fa-solid fa-circle-exclamation text-purple-500 text-sm flex-shrink-0 mt-0.5"></i>
+              <p class="t-ghost text-xs leading-relaxed"><strong class="t-pale">Nguyên tắc Lênin:</strong> Không được
+                dùng trấn áp để xóa bỏ tín ngưỡng và nhận thức sai. Mọi cấm đoán cực đoan đều phản tác dụng.</p>
+            </div>
+            <div class="flex items-start gap-3"><i
+                class="fa-solid fa-circle-exclamation text-purple-500 text-sm flex-shrink-0 mt-0.5"></i>
+              <p class="t-ghost text-xs leading-relaxed"><strong class="t-pale">Con đường đúng:</strong> Nâng cao trình
+                độ nhận thức và giáo dục khoa học — không phải cấm đoán bằng bạo lực ngôn từ.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="restartGame()" class="btn-neutral flex items-center justify-center gap-3"><i
+              class="fa-solid fa-rotate-left text-sm"></i> Chơi lại từ đầu</button>
+          <button onclick="goTo('s-dec')" class="btn-ghost flex items-center justify-center gap-3"><i
+              class="fa-solid fa-arrow-left text-sm"></i> Quay lại lựa chọn</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH C · GOOD · SCENE 1 ══════════════════════════ -->
+  <section id="s-g1" class="scene">
+    <div class="wm t-seal" style="color:rgba(0,15,35,.06);font-size:clamp(130px,25vw,310px)">静</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(20,80,150,.7),transparent)"></div>
+          <div>
+            <p class="t-blue text-[10px] tracking-[.3em] font-mono uppercase">Con đường C · Cảnh 1</p>
+            <p class="t-ghost text-xs mt-0.5">Bạn hít một hơi thật sâu. Và ngồi xuống.</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Silhouettes at Altar -->
+        <div class="illust-panel" style="border-color:rgba(20,60,120,.4);background:rgba(2,6,16,.8)">
+          <div class="illust-silhouette-wrap">
+            <div class="altar-glow-bg"></div>
+            <!-- Left silhouette (you) -->
+            <div class="silh-person">
+              <div class="silh-head"></div>
+              <div class="silh-body">
+                <div class="silh-arms"></div>
+              </div>
+              <div style="width:30px;height:8px;background:rgba(200,160,120,.08);border-radius:0 0 4px 4px"></div>
+            </div>
+            <!-- Altar center -->
+            <div class="altar-block">
+              <div class="altar-top"></div>
+              <div class="altar-body">🪔</div>
+              <div class="altar-incense">
+                <div class="candle-wrap flicker" style="transform:scale(.7)">
+                  <div class="candle-glow"></div>
+                  <div class="candle-flame"></div>
+                  <div class="candle-body" style="height:28px"></div>
+                </div>
+                <svg width="16" height="36" viewBox="0 0 16 36" style="overflow:visible">
+                  <line x1="8" y1="36" x2="8" y2="20" stroke="#7a5030" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="8" cy="18" r="3" fill="#ff6600" opacity=".8" />
+                  <path d="M8,18 Q4,10 8,2 Q12,-4 8,-12" stroke="rgba(200,180,160,.25)" stroke-width="1.5" fill="none"
+                    class="smoke-stream" />
+                </svg>
+                <div class="candle-wrap flicker" style="transform:scale(.7);animation-delay:.4s">
+                  <div class="candle-glow"></div>
+                  <div class="candle-flame"></div>
+                  <div class="candle-body" style="height:28px"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Right silhouette (em) -->
+            <div class="silh-person" style="animation-delay:.8s">
+              <div class="silh-head"></div>
+              <div class="silh-body">
+                <div class="silh-arms"></div>
+              </div>
+              <div style="width:30px;height:8px;background:rgba(200,160,120,.08);border-radius:0 0 4px 4px"></div>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Khi <span class="t-blue">Đồng Cảm</span> Mở Cánh Cửa</h2>
+        <div class="space-y-4 mb-5">
+          <div class="horror-card p-5 relative" style="border-color:rgba(20,70,140,.4)">
+            <div class="co-tl"></div>
+            <p class="t-blue text-[10px] font-mono uppercase tracking-wider mb-2">18:02 · Ngồi xuống cạnh em</p>
+            <p class="t-pale text-sm leading-relaxed">Không chặn cửa. Không giật điện thoại. Giọng bình thản: <em
+                class="t-blue">"Em đang cảm thấy thế nào trước kỳ thi?"</em></p>
+          </div>
+          <div class="horror-card p-5 relative" style="border-color:rgba(20,70,140,.4)">
+            <div class="co-tl"></div>
+            <p class="t-blue text-[10px] font-mono uppercase tracking-wider mb-2">18:15 · Em bắt đầu nói</p>
+            <p class="t-pale text-sm leading-relaxed">Lần đầu tiên sau nhiều tuần, em nói thật. Về nỗi sợ trượt. Về cảm
+              giác <em>"đứng trên mảnh đất đang sụp xuống."</em> Bạn lắng nghe. Không phán xét.</p>
+          </div>
+          <div class="horror-card p-5 relative" style="border-color:rgba(20,70,140,.4)">
+            <div class="co-tl"></div>
+            <p class="t-blue text-[10px] font-mono uppercase tracking-wider mb-2">18:40 · Bàn thờ gia tiên</p>
+            <p class="t-pale text-sm leading-relaxed">Hai anh em cùng thắp nhang. Bạn nói: <em class="t-amber">"Ông bà
+                phù hộ không qua bùa mua online — ông bà phù hộ qua cả đời yêu thương và muốn con cháu sống đúng
+                đắn."</em> Mắt em bớt đỏ.</p>
+          </div>
+        </div>
+        <button onclick="goTo('s-g2')" class="btn-light w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Cùng nhau tìm sự thật…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH C · GOOD · SCENE 2 ══════════════════════════ -->
+  <section id="s-g2" class="scene">
+    <div class="wm t-seal" style="color:rgba(0,20,10,.06);font-size:clamp(130px,25vw,310px)">真</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(0,120,60,.6),transparent)"></div>
+          <div>
+            <p class="text-green-500 text-[10px] tracking-[.3em] font-mono uppercase">Con đường C · Cảnh 2</p>
+            <p class="t-ghost text-xs mt-0.5">Cùng nhau mở máy tính · Điều tra</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Magnifying glass -->
+        <div class="illust-panel" style="border-color:rgba(0,100,50,.35)">
+          <div class="illust-magnify-wrap">
+            <div class="magnify-glass">
+              <div class="magnify-circle">
+                <div class="magnify-inside">
+                  <div class="reveal-text">
+                    <p style="font-size:9px;color:#ff6060;font-weight:700;text-decoration:line-through">Đại Sư Thật</p>
+                    <p style="font-size:8px;color:#80ff80;font-weight:700;margin-top:4px">Website giả</p>
+                    <p style="font-size:7px;color:rgba(150,255,150,.7)">19 ngày tuổi</p>
+                  </div>
+                </div>
+              </div>
+              <div class="magnify-handle"></div>
+            </div>
+            <div style="flex:1;padding-left:1rem">
+              <p style="font-size:10px;color:rgba(100,200,100,.8);font-family:'Noto Serif SC',serif;margin-bottom:8px">
+                調查結果</p>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div
+                  style="background:rgba(0,40,10,.6);border:1px solid rgba(0,120,40,.3);border-radius:4px;padding:6px 10px">
+                  <p style="font-size:9px;color:#60d080;font-weight:700">✓ Domain: 19 ngày</p>
+                </div>
+                <div
+                  style="background:rgba(0,40,10,.6);border:1px solid rgba(0,120,40,.3);border-radius:4px;padding:6px 10px">
+                  <p style="font-size:9px;color:#60d080;font-weight:700">✓ Ảnh: Stock 2019</p>
+                </div>
+                <div
+                  style="background:rgba(0,40,10,.6);border:1px solid rgba(0,120,40,.3);border-radius:4px;padding:6px 10px">
+                  <p style="font-size:9px;color:#60d080;font-weight:700">✓ TK báo cáo 14×</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Mở <span class="t-green">Máy Tính</span> Cùng Nhau</h2>
+        <div class="space-y-4 mb-5">
+          <div class="horror-card p-5 relative" style="border-color:rgba(0,100,50,.35)">
+            <div class="co-tl"></div>
+            <p class="text-green-400 text-[10px] font-mono uppercase tracking-wider mb-2">Bước 1 · Kiểm tra domain</p>
+            <p class="t-pale text-sm leading-relaxed"><em class="text-green-400">"Em thấy chưa — domain tạo ngày
+                nào?"</em> Em nhìn màn hình: <strong>19 ngày trước.</strong> Mặt em thay đổi.</p>
+          </div>
+          <div class="horror-card p-5 relative" style="border-color:rgba(0,100,50,.35)">
+            <div class="co-tl"></div>
+            <p class="text-green-400 text-[10px] font-mono uppercase tracking-wider mb-2">Bước 2 · Tra ảnh ngược</p>
+            <p class="t-pale text-sm leading-relaxed">Kéo ảnh "bằng chứng thi đỗ" vào Google Images → stock Shutterstock
+              từ 2019 tại Argentina. Em nhìn chằm chằm vào màn hình không nói một lời.</p>
+          </div>
+          <div class="horror-card p-5 relative" style="border-color:rgba(0,100,50,.35)">
+            <div class="co-tl"></div>
+            <p class="text-green-400 text-[10px] font-mono uppercase tracking-wider mb-2">Bước 3 · Nạn nhân khác</p>
+            <p class="t-pale text-sm leading-relaxed">Số tài khoản bị báo cáo 14 lần. Em đọc câu chuyện những nạn nhân
+              khác — toàn học sinh trước kỳ thi. Em nói: <em class="text-green-400">"Con không phải người duy nhất bị
+                lừa. Con không phải kẻ ngu."</em></p>
+          </div>
+        </div>
+        <button onclick="goTo('s-g3')" class="btn-light w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Báo cáo và hành động…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH C · GOOD · SCENE 3 ══════════════════════════ -->
+  <section id="s-g3" class="scene">
+    <div class="wm t-seal" style="color:rgba(0,25,15,.06);font-size:clamp(130px,25vw,310px)">正</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(0,120,60,.6),transparent)"></div>
+          <div>
+            <p class="text-green-500 text-[10px] tracking-[.3em] font-mono uppercase">Con đường C · Cảnh 3</p>
+            <p class="t-ghost text-xs mt-0.5">Đấu tranh bằng pháp luật</p>
+          </div>
+        </div>
+        <!-- ILLUSTRATION: Police Stamp -->
+        <div class="illust-panel" style="border-color:rgba(0,100,50,.35)">
+          <div class="illust-stamp-wrap">
+            <div class="stamp-doc">
+              <p>BÁO CÁO LỪA ĐẢO</p>
+              <p>─────────────</p>
+              <p>Ngày: 20/04/2026</p>
+              <p>Tên: Đại Sư Tâm Linh</p>
+              <p>Số TK: xxxxxxxxx</p>
+              <p>Số tiền: 5.000.000đ</p>
+              <p>Điều 174 BLHS</p>
+              <p>─────────────</p>
+              <p>Chứng cứ: ảnh, log</p>
+            </div>
+            <div class="stamp-circle">
+              <span class="stamp-text-top">CÔNG AN</span>
+              <span class="stamp-icon">🛡️</span>
+              <span class="stamp-text-bot">ĐÃ TIẾP NHẬN</span>
+            </div>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Đấu Tranh <span class="t-green">Bằng Pháp Luật</span></h2>
+        <div class="space-y-4 mb-5">
+          <div class="horror-card p-5 relative" style="border-color:rgba(0,100,50,.35)">
+            <div class="co-tl"></div>
+            <p class="text-green-400 text-[10px] font-mono uppercase tracking-wider mb-2">Sáng hôm sau · Công an phường
+            </p>
+            <p class="t-pale text-sm leading-relaxed">Hai anh em cùng ra công an. Em tự trình bày. Hồ sơ chuyển lên
+              phòng Cảnh sát kinh tế. <strong class="text-green-400">Tài khoản bị freeze trong 48 giờ.</strong></p>
+          </div>
+          <div class="horror-card p-5 relative" style="border-color:rgba(0,100,50,.35)">
+            <div class="co-tl"></div>
+            <p class="text-green-400 text-[10px] font-mono uppercase tracking-wider mb-2">Em hiểu sau đó</p>
+            <p class="t-pale text-sm leading-relaxed">Em nói: <em class="text-green-300">"Con không mua bùa vì con ngu.
+                Con mua vì con sợ và không có ai trả lời câu hỏi: làm thế nào để không trượt?"</em></p>
+          </div>
+          <div class="horror-card p-5 relative" style="border-color:rgba(0,100,50,.35)">
+            <div class="co-tl"></div>
+            <p class="text-green-400 text-[10px] font-mono uppercase tracking-wider mb-2">Lập kế hoạch 3 tuần</p>
+            <p class="t-pale text-sm leading-relaxed">Hai anh em ngồi lập lịch ôn tập. Em thở phào: <em>"Lần đầu tiên
+                con thấy thi cử là thứ có thể chuẩn bị được — không phải thứ cần cầu nguyện."</em></p>
+          </div>
+        </div>
+        <div class="q-gold mb-5">
+          <p class="t-amber text-[10px] uppercase font-mono mb-1">📚 Mác–Lênin · Vai trò pháp luật</p>
+          <p class="t-ghost text-xs italic leading-relaxed">"Nhà nước xã hội chủ nghĩa kiên quyết đấu tranh loại bỏ mê
+            tín dị đoan thông qua <strong class="t-pale">pháp luật và giáo dục</strong> — không phải trấn áp tín
+            ngưỡng."</p>
+        </div>
+        <button onclick="goTo('s-g4')" class="btn-light w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-arrow-right"></i> Ngày thi và kết quả…</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH C · GOOD · SCENE 4 ══════════════════════════ -->
+  <section id="s-g4" class="scene">
+    <div class="wm t-seal" style="color:rgba(5,20,0,.06);font-size:clamp(130px,25vw,310px)">光</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl">
+        <div class="chapter-label">
+          <div class="chapter-line"
+            style="background:linear-gradient(to bottom,transparent,rgba(160,120,0,.6),transparent)"></div>
+          <div>
+            <p class="t-gold text-[10px] tracking-[.3em] font-mono uppercase">Con đường C · Cảnh 4</p>
+            <p class="t-ghost text-xs mt-0.5">Sáng ngày thi · Cổng trường</p>
+          </div>
+        </div>
+        <h2 class="font-serif text-2xl t-pale font-bold mb-5">Vào Phòng Thi <span class="t-gold">Với Đầu Óc Tỉnh
+            Táo</span></h2>
+        <!-- ILLUSTRATION: Sunrise / morning of exam -->
+        <div class="illust-panel mb-5" style="border-color:rgba(140,90,0,.42);overflow:hidden">
+          <div style="position:relative;height:162px;overflow:hidden">
+            <div
+              style="position:absolute;inset:0;background:linear-gradient(to top,rgba(12,6,0,1) 0%,rgba(38,18,4,.9) 20%,rgba(65,32,6,.7) 38%,rgba(45,28,48,.6) 65%,rgba(18,12,28,.75) 100%)">
+            </div>
+            <div
+              style="position:absolute;bottom:26px;left:0;right:0;height:30px;background:linear-gradient(to top,rgba(220,120,10,.18),transparent)">
+            </div>
+            <div
+              style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);width:52px;height:52px;background:radial-gradient(circle,rgba(255,210,60,.85) 0%,rgba(255,150,20,.55) 42%,rgba(255,90,0,.2) 70%,transparent 100%);border-radius:50%;box-shadow:0 0 55px rgba(255,150,0,.4)">
+            </div>
+            <div style="position:absolute;bottom:58px;left:50%;transform:translateX(-50%)">
+              <div
+                style="position:absolute;width:1.5px;height:55px;background:linear-gradient(to top,rgba(255,150,0,.35),transparent);transform:rotate(0deg) translateY(-55px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:42px;background:linear-gradient(to top,rgba(255,150,0,.22),transparent);transform:rotate(45deg) translateY(-42px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:55px;background:linear-gradient(to top,rgba(255,150,0,.35),transparent);transform:rotate(90deg) translateY(-55px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:42px;background:linear-gradient(to top,rgba(255,150,0,.22),transparent);transform:rotate(135deg) translateY(-42px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:55px;background:linear-gradient(to top,rgba(255,150,0,.35),transparent);transform:rotate(180deg) translateY(-55px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:42px;background:linear-gradient(to top,rgba(255,150,0,.22),transparent);transform:rotate(225deg) translateY(-42px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:55px;background:linear-gradient(to top,rgba(255,150,0,.35),transparent);transform:rotate(270deg) translateY(-55px);transform-origin:bottom center">
+              </div>
+              <div
+                style="position:absolute;width:1.5px;height:42px;background:linear-gradient(to top,rgba(255,150,0,.22),transparent);transform:rotate(315deg) translateY(-42px);transform-origin:bottom center">
+              </div>
+            </div>
+            <div
+              style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:48px">
+              <div style="position:relative;width:9px;height:50px;background:rgba(8,5,0,.96);border-radius:2px 2px 0 0">
+                <div
+                  style="position:absolute;top:-7px;left:-4px;right:-4px;height:12px;border-radius:50% 50% 0 0;background:rgba(8,5,0,.96)">
+                </div>
+              </div>
+              <div style="position:relative;width:9px;height:50px;background:rgba(8,5,0,.96);border-radius:2px 2px 0 0">
+                <div
+                  style="position:absolute;top:-7px;left:-4px;right:-4px;height:12px;border-radius:50% 50% 0 0;background:rgba(8,5,0,.96)">
+                </div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:0;left:0;right:0;height:28px;background:rgba(8,5,0,.96)"></div>
+            <p
+              style="position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:9px;color:rgba(200,150,60,.48);font-style:italic;letter-spacing:.08em">
+              Sáng ngày thi · Bình thản và tự tin</p>
+          </div>
+        </div>
+        <div class="space-y-4 mb-5">
+          <div class="pale-card p-5 relative" style="border-color:rgba(140,100,0,.4)">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">6:30 · Bữa sáng cùng gia đình</p>
+            <p class="t-pale text-sm leading-relaxed">Cả gia đình ngồi ăn sáng. Không khí bình thản — bình thản vì ai
+              cũng biết mình đã chuẩn bị đủ sức. Ba tuần ôn có phương pháp.</p>
+          </div>
+          <div class="pale-card p-5 relative" style="border-color:rgba(140,100,0,.4)">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">7:15 · Cổng trường</p>
+            <p class="t-pale text-sm leading-relaxed">Em nhìn vào mắt bạn trước khi bước vào. Bạn đặt tay lên vai em một
+              giây. Em gật đầu. <em class="t-amber">Lần đầu tiên em bước vào phòng thi mà không cần giắt theo tờ bùa
+                nào.</em></p>
+          </div>
+          <div class="pale-card p-5 relative" style="border-color:rgba(140,100,0,.4)">
+            <div class="co-tl-p"></div>
+            <p class="t-amber text-[10px] font-mono uppercase tracking-wider mb-2">Trong phòng thi</p>
+            <p class="t-pale text-sm leading-relaxed">Đề mở ra. Em nhận ra hơn phân nửa câu hỏi từ trọng tâm đã ôn.
+              Không phải phép màu — đó là <strong class="t-gold">kết quả của kế hoạch học tập có hệ thống.</strong></p>
+          </div>
+        </div>
+        <button onclick="goTo('s-gend')" class="btn-gold w-full flex items-center justify-center gap-3 py-4"><i
+            class="fa-solid fa-star"></i> Kết cục cuối cùng →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATH C · GOOD ENDING ═════════════════════════════ -->
+  <section id="s-gend" class="scene">
+    <video id="good-sky-bg" loop muted playsinline preload="auto">
+      <source src="Deep Blue Sky - Clouds Timelapse - Free Footage - Full HD 1080p.mp4" type="video/mp4">
+    </video>
+    <div id="good-ending-content"
+      class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-2xl text-center">
+        <div class="text-7xl mb-5" style="animation:starSpin 4s linear infinite;display:inline-block">🌟</div>
+        <div class="inline-block px-4 py-1.5 mb-5 rounded text-[10px] font-bold tracking-widest uppercase"
+          style="border:1px solid rgba(180,140,20,.6);color:#c8a820;background:rgba(18,13,0,.5)">KẾT CỤC · ÁNH SÁNG TRI
+          THỨC ✓</div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-black t-gold mb-7">ÁNH SÁNG TRI THỨC</h2>
+
+        <!-- ILLUSTRATION: Victory Starfield -->
+        <div class="illust-panel mb-6" style="border-color:rgba(120,90,0,.4);background:rgba(4,10,18,.9)">
+          <div class="illust-victory-wrap">
+            <div class="victory-bg"></div>
+            <div class="victory-cap">🎓</div>
+            <div class="victory-rays"></div>
+          </div>
+        </div>
+
+        <div class="pale-card p-6 mb-5 text-left relative"
+          style="border-color:rgba(140,100,0,.4);background:rgba(10,7,0,.88)">
+          <div class="co-tl-p"></div>
+          <div class="co-br-p"></div>
+          <p class="t-pale text-sm leading-relaxed mb-3">Em đỗ đại học. Không nhờ bùa — nhờ 3 tuần ôn tập có phương pháp
+            và một tâm lý được giải phóng khỏi nỗi sợ đã biến thành hiểu biết.</p>
+          <p class="t-pale text-sm leading-relaxed mb-3">Kẻ lừa đảo bị điều tra. Tài khoản đóng băng. Các nạn nhân khác
+            được cảnh báo kịp thời nhờ hồ sơ tố giác hai anh em đã nộp.</p>
+          <p class="t-pale text-sm leading-relaxed">Điều quan trọng hơn kết quả thi: <strong class="t-gold">em hiểu được
+              ranh giới giữa tín ngưỡng thiêng liêng và lừa đảo tâm linh</strong> — và sẽ không bao giờ quên sự khác
+            biệt đó.</p>
+        </div>
+        <div class="pale-card p-5 mb-5 text-left" style="border-color:rgba(120,90,0,.4);background:rgba(8,5,0,.88)">
+          <p class="t-gold text-xs font-semibold uppercase tracking-wider mb-4 flex items-center gap-2"><i
+              class="fa-solid fa-scale-balanced"></i> Phân định rõ ràng</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs">
+              <thead>
+                <tr style="border-bottom:1px solid rgba(120,90,0,.35)">
+                  <th class="text-left pb-2 t-ghost font-mono uppercase text-[9px]">Tiêu chí</th>
+                  <th class="text-left pb-2 t-amber font-mono uppercase text-[9px]">Tín ngưỡng TT</th>
+                  <th class="text-left pb-2 t-blood font-mono uppercase text-[9px]">Mê tín số</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(80,60,0,.2)">
+                  <td class="py-1.5 t-ghost pr-3">Nguồn gốc</td>
+                  <td class="py-1.5 t-pale pr-3">Nghìn năm lịch sử</td>
+                  <td class="py-1.5 t-blood">19 ngày trước</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(80,60,0,.2)">
+                  <td class="py-1.5 t-ghost pr-3">Mục đích</td>
+                  <td class="py-1.5 t-pale pr-3">Đạo hiếu, gắn kết</td>
+                  <td class="py-1.5 t-blood">Chiếm đoạt tài sản</td>
+                </tr>
+                <tr style="border-bottom:1px solid rgba(80,60,0,.2)">
+                  <td class="py-1.5 t-ghost pr-3">Pháp lý</td>
+                  <td class="py-1.5 t-pale pr-3">Nhà nước bảo hộ</td>
+                  <td class="py-1.5 t-blood">Điều 174, 320 BLHS</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 t-ghost pr-3">Thái độ</td>
+                  <td class="py-1.5 t-pale pr-3">Tôn trọng</td>
+                  <td class="py-1.5 t-blood">Đấu tranh loại bỏ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="lesson-card p-5 mb-6 text-left">
+          <p class="text-purple-400 text-xs font-semibold uppercase tracking-wider mb-3 flex items-center gap-2"><i
+              class="fa-solid fa-graduation-cap"></i> Kết luận Mác–Lênin</p>
+          <p class="t-ghost text-xs leading-relaxed">"Trong xây dựng xã hội mới: <strong class="t-pale">(1) đảm bảo
+              quyền tự do tín ngưỡng</strong> của nhân dân; <strong class="t-pale">(2) kiên quyết đấu tranh loại bỏ mê
+              tín dị đoan và lừa đảo</strong> thông qua pháp luật; <strong class="t-pale">(3) nâng cao trình độ nhận
+              thức</strong> để người dân tự trang bị thế giới quan khoa học. Ba nhiệm vụ này bổ sung cho nhau."</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="triggerConfetti()" class="btn-gold flex items-center justify-center gap-3"><i
+              class="fa-solid fa-graduation-cap"></i> Hoàn thành xuất sắc! 🎉</button>
+          <button onclick="restartGame()" class="btn-ghost flex items-center justify-center gap-3"><i
+              class="fa-solid fa-rotate-left text-sm"></i> Chơi lại</button>
+        </div>
+        <p class="mt-4 t-ghost text-[10px]">Bạn đã hiểu ranh giới giữa tín ngưỡng truyền thống và mê tín dị đoan!</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
