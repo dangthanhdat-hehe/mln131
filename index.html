@@ -1627,6 +1627,8 @@
           </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="goTo('s-quiz')" class="btn-neutral flex items-center justify-center gap-3"><i
+              class="fa-solid fa-gamepad"></i> Củng cố kiến thức với Minigame 🎮</button>
           <button onclick="restartGame()" class="btn-neutral flex items-center justify-center gap-3"><i
               class="fa-solid fa-rotate-left text-sm"></i> Chơi lại từ đầu</button>
           <button onclick="goTo('s-dec')" class="btn-ghost flex items-center justify-center gap-3"><i
@@ -2183,12 +2185,40 @@
               class="fa-solid fa-hands-clapping mr-2"></i> Tràng Pháo Tay Cổ Vũ</button>
         </div>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="triggerConfetti()" class="btn-gold flex items-center justify-center gap-3"><i
-              class="fa-solid fa-graduation-cap"></i> Hoàn thành xuất sắc! 🎉</button>
+          <button onclick="goTo('s-quiz')" class="btn-gold flex items-center justify-center gap-3"><i
+              class="fa-solid fa-gamepad"></i> Hoàn thành xuất sắc & Chơi Minigame! 🎮</button>
           <button onclick="restartGame()" class="btn-ghost flex items-center justify-center gap-3"><i
               class="fa-solid fa-rotate-left text-sm"></i> Chơi lại</button>
         </div>
         <p class="mt-4 t-ghost text-[10px]">Bạn đã hiểu ranh giới giữa tín ngưỡng truyền thống và mê tín dị đoan!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECTION: MINIGAME (THEO NỘI DUNG THUYẾT TRÌNH) ════════ -->
+  <section id="s-quiz" class="scene quiz-bright-theme">
+    <div class="wm t-seal" style="color:rgba(180,140,20,.05);font-size:clamp(100px,25vw,250px)">遊</div>
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-5 py-20">
+      <div class="w-full max-w-3xl">
+        <div class="chapter-label text-center mb-8">
+          <div class="chapter-line mx-auto mb-3"
+            style="background:linear-gradient(90deg,transparent,rgba(180,140,20,.8),transparent); width: 100px;"></div>
+          <p class="text-amber-700 text-[10px] tracking-[.3em] font-mono uppercase font-bold">🎮 Mini-game tương tác</p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-amber-900 font-black mt-2 mb-2">Thử Thách Bản Lĩnh</h2>
+          <div id="quiz-progress-bar" class="w-full h-2 bg-amber-200 rounded-full mt-4 overflow-hidden border border-amber-300">
+            <div id="quiz-progress-fill" class="h-full bg-amber-600 transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div id="quiz-container" class="space-y-6">
+          <!-- Quiz content will be injected here via script.js -->
+        </div>
+
+        <div class="mt-12 flex justify-center items-center">
+          <button onclick="restartGame()" class="btn-ghost !text-amber-800 !border-amber-400 text-[10px] uppercase tracking-widest hover:bg-amber-100">
+            <i class="fa-solid fa-house mr-1"></i> Về Trang Chủ
+          </button>
+        </div>
       </div>
     </div>
   </section>
